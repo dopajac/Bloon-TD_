@@ -7,10 +7,11 @@ public class BloonMovement : MonoBehaviour
     private BloonManager bloonManager;
     private LayerMask wallLayer; // 벽 레이어 감지용
 
+   
     public void SetTarget(Vector3 target)
     {
         targetPosition = target;
-        Debug.Log(gameObject.name + " 목표 위치: " + targetPosition);
+       
     }
 
     private void Start()
@@ -18,8 +19,12 @@ public class BloonMovement : MonoBehaviour
         bloonManager = GetComponent<BloonManager>();
         speed = bloonManager.speed;
 
-        // "Wall" 레이어만 감지하도록 설정
+        // "Wall" 레이어 감지 설정
         wallLayer = LayerMask.GetMask("Wall");
+
+        // 풍선끼리 충돌 무시 (Bloon 레이어의 Layer 번호를 지정해야 함)
+        int bloonLayer = LayerMask.NameToLayer("Bloon");
+        Physics2D.IgnoreLayerCollision(bloonLayer, bloonLayer, true);
     }
 
     private void Update()
@@ -66,12 +71,14 @@ public class BloonMovement : MonoBehaviour
         foreach (var newDirection in alternativeDirections)
         {
             
-
+            
             if (!Physics2D.Raycast(transform.position, newDirection)) // 벽이 없는 방향 찾기
             {
                 transform.position += newDirection * 0.5f; // 벽 피하기
                 return;
             }
         }
+
     }
+    
 }

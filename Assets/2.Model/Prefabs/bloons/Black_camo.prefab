@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 621463258399183463}
   - component: {fileID: 5044629755294741132}
   - component: {fileID: 3893886334018680784}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Black_camo
   m_TagString: Bloon
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

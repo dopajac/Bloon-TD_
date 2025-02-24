@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7403753026984668434}
   - component: {fileID: 8834923558045766597}
   - component: {fileID: 6675658975438426578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pink_camo
   m_TagString: Bloon
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

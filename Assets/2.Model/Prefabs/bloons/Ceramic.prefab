@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1589967804886606655}
   - component: {fileID: 7262705675405267865}
   - component: {fileID: -4194331509529271851}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ceramic
   m_TagString: Bloon
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

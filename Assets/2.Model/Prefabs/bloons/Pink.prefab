@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8611289963684708071}
   - component: {fileID: -8174001887608878574}
   - component: {fileID: 2942349751082994904}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pink
   m_TagString: Bloon
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
   hp: 1
   islead: 0
   isplane: 0
-  iscamo: 0
+  iscamo: 1
   speed: 3.5
 --- !u!114 &8611289963684708071
 MonoBehaviour:
@@ -178,7 +178,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2800374035976287899}
   - component: {fileID: -5780658789167663490}
   - component: {fileID: 4268989438052688506}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Leab_camo
   m_TagString: Bloon
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

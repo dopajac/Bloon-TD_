@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2493866762121778229}
   - component: {fileID: 2167688668076249453}
   - component: {fileID: 4475696452427417116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Bloon
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

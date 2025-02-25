@@ -4,77 +4,101 @@ using UnityEngine;
 
 public class BloonSpawner : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> BloonsList;
-    private Transform parentTransform;
+    [SerializeField] public List<GameObject> BloonPrefabs;  // 첫 번째 그룹 (Bloons1)
+    [SerializeField] public List<GameObject> BloonPrefabs2; // 두 번째 그룹 (Bloons2)
 
-    [SerializeField] private GameObject Start_1;
-    [SerializeField] private GameObject Finish_1;
+    private Transform parentTransform1, parentTransform2;
+    private Dictionary<int, Queue<GameObject>> bloonPools1 = new Dictionary<int, Queue<GameObject>>(); // BloonPrefabs용 풀
+    private Dictionary<int, Queue<GameObject>> bloonPools2 = new Dictionary<int, Queue<GameObject>>(); // BloonPrefabs2용 풀
 
-    private List<GameObject> spawnedBalloons = new List<GameObject>(); // 생성된 풍선 리스트
-    private bool isGameStarted = false; // 시작 여부 체크
+    [SerializeField] private int poolSize = 10; // 한 종류당 10개씩 미리 생성
 
-    private void Start()
+    private void Awake()
     {
-        parentTransform = new GameObject("Bloons").transform;
+        parentTransform1 = new GameObject("Bloons1").transform;
+        parentTransform2 = new GameObject("Bloons2").transform;
+        InitializePool(BloonPrefabs, bloonPools1, parentTransform1);
+        InitializePool(BloonPrefabs2, bloonPools2, parentTransform2);
+    }
 
-        Debug.Log(Finish_1.transform.position);
-
-        for (int i = 0; i < BloonsList.Count; i++)
+    private void InitializePool(List<GameObject> prefabs, Dictionary<int, Queue<GameObject>> pool, Transform parent)
+    {
+        foreach (var prefab in prefabs)
         {
-            Transform groupParent = new GameObject(BloonsList[i].name + "s").transform;
-            groupParent.SetParent(parentTransform);
+            int level = prefab.GetComponent<BloonManager>().level;
 
-            for (int j = 0; j < 10; j++)// 풍선 소환 수량
+            if (!pool.ContainsKey(level))
             {
-                // 처음에는 화면 밖(-20, -20)에 배치
-                GameObject balloon = Instantiate(BloonsList[i], new Vector3(-20, -20, 0), Quaternion.identity, groupParent);
-                balloon.SetActive(false); // 처음에는 비활성화
-                spawnedBalloons.Add(balloon);
+                pool[level] = new Queue<GameObject>();
+            }
+
+            for (int i = 0; i < poolSize; i++)
+            {
+                GameObject bloon = Instantiate(prefab, new Vector3(-20, -20, 0), Quaternion.identity, parent);
+                bloon.SetActive(false);
+                pool[level].Enqueue(bloon);
             }
         }
     }
 
-    public void StartGame()
+    public GameObject GetPooledBloon(int level, bool isFromFirstGroup)
     {
-        if (isGameStarted) return; // 이미 시작했다면 중복 실행 방지
+        Dictionary<int, Queue<GameObject>> targetPool = isFromFirstGroup ? bloonPools1 : bloonPools2;
 
-        isGameStarted = true;
-        StartCoroutine(SendBalloonsToStart());
-    }
-
-    private IEnumerator SendBalloonsToStart()
-    {
-        foreach (GameObject balloon in spawnedBalloons)
+        if (targetPool.ContainsKey(level) && targetPool[level].Count > 0)
         {
-            Debug.Log("start" + Start_1.transform.position);
-            balloon.transform.position = Start_1.transform.position; // Start 위치로 이동
-            balloon.SetActive(true); // 활성화
+            GameObject bloon = targetPool[level].Dequeue();
+            bloon.SetActive(true);
+            return bloon;
         }
-
-        yield return new WaitForSeconds(2f); // 모든 풍선이 Start 위치에 도착하는 시간
-
-        StartCoroutine(SendBalloonsToFinish());
+        else
+        {
+            Debug.LogWarning($"No available bloons of level {level} in {(isFromFirstGroup ? "BloonPrefabs" : "BloonPrefabs2")}. Creating a new one.");
+            return CreateNewBloon(level, isFromFirstGroup);
+        }
     }
 
-    private IEnumerator SendBalloonsToFinish()
+    private GameObject CreateNewBloon(int level, bool isFromFirstGroup)
     {
-        foreach (GameObject balloon in spawnedBalloons)
+        List<GameObject> prefabs = isFromFirstGroup ? BloonPrefabs : BloonPrefabs2;
+        Dictionary<int, Queue<GameObject>> targetPool = isFromFirstGroup ? bloonPools1 : bloonPools2;
+        Transform parent = isFromFirstGroup ? parentTransform1 : parentTransform2;
+
+        GameObject prefab = prefabs.Find(b => b.GetComponent<BloonManager>().level == level);
+
+        if (prefab != null)
         {
-            if (balloon != null)
+            GameObject newBloon = Instantiate(prefab, new Vector3(-20, -20, 0), Quaternion.identity, parent);
+            newBloon.SetActive(false);
+
+            if (!targetPool.ContainsKey(level))
             {
-              
-                BloonMovement movement = balloon.GetComponent<BloonMovement>();
-                if (movement == null)
-                {
-                    movement = balloon.AddComponent<BloonMovement>();
-                }
-
-              
-                movement.SetTarget(Finish_1.transform.position);
-
-                yield return new WaitForSeconds(0.5f); // 간격 조절
+                targetPool[level] = new Queue<GameObject>();
             }
+
+            targetPool[level].Enqueue(newBloon);
+            return newBloon;
         }
+        else
+        {
+            Debug.LogError($"No prefab found for bloon level {level} in {(isFromFirstGroup ? "BloonPrefabs" : "BloonPrefabs2")}.");
+            return null;
+        }
+    }
+
+    public void ReturnToPool(GameObject balloon, bool isFromFirstGroup)
+    {
+        int level = balloon.GetComponent<BloonManager>().level;
+        Dictionary<int, Queue<GameObject>> targetPool = isFromFirstGroup ? bloonPools1 : bloonPools2;
+
+        if (!targetPool.ContainsKey(level))
+        {
+            Debug.LogError($"Trying to return a bloon of level {level}, but no pool exists in {(isFromFirstGroup ? "BloonPrefabs" : "BloonPrefabs2")}.");
+            return;
+        }
+
+        balloon.SetActive(false);
+        balloon.transform.position = new Vector3(-20, -20, 0);
+        targetPool[level].Enqueue(balloon);
     }
 }
-

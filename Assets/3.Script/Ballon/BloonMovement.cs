@@ -1,84 +1,53 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Splines;
+
 
 public class BloonMovement : MonoBehaviour
 {
-    private Vector3 targetPosition;
-    private float speed; // 이동 속도
-    private BloonManager bloonManager;
-    private LayerMask wallLayer; // 벽 레이어 감지용
 
-   
-    public void SetTarget(Vector3 target)
-    {
-        targetPosition = target;
-       
-    }
+    [SerializeField] public GameObject Finish;
 
     private void Start()
     {
-        bloonManager = GetComponent<BloonManager>();
-        speed = bloonManager.speed;
+        Collider2D myCollider = GetComponent<Collider2D>();
+        
 
-        // "Wall" 레이어 감지 설정
-        wallLayer = LayerMask.GetMask("Wall");
+        Finish = GameObject.Find("Finish");
 
-        // 풍선끼리 충돌 무시 (Bloon 레이어의 Layer 번호를 지정해야 함)
-        int bloonLayer = LayerMask.NameToLayer("Bloon");
-        Physics2D.IgnoreLayerCollision(bloonLayer, bloonLayer, true);
-    }
+        if (myCollider == null) return;
 
-    private void Update()
-    {
-        if (targetPosition == Vector3.zero)
+        GameObject[] bloons = GameObject.FindGameObjectsWithTag("Bloon");
+
+        foreach (GameObject bloon in bloons)
         {
-            return;
-        }
-
-        // 현재 위치에서 targetPosition 방향으로 Ray를 쏴서 벽 감지
-        Vector3 direction = (targetPosition - transform.position).normalized;
-        RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, direction, out hit, 1.0f, wallLayer)) // 특정 레이어만 감지
-        {
-            Debug.Log(gameObject.name + " 벽 감지! 경로 변경");
-
-            // 벽을 피하기 위한 간단한 로직
-            AvoidWall();
-            return;
-        }
-
-        // 목표 위치로 이동
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-
-        // 목표 지점에 도달하면 삭제
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
-        {
-            Debug.Log(gameObject.name + " 도착 완료!");
-            //Destroy(gameObject);
-        }
-    }
-
-    private void AvoidWall()
-    {
-        // 좌/우 또는 위/아래 방향으로 벽을 피해 이동
-        Vector3[] alternativeDirections = {
-            transform.right,  // 오른쪽
-            -transform.right, // 왼쪽
-            transform.forward, // 위쪽
-            -transform.forward // 아래쪽
-        };
-
-        foreach (var newDirection in alternativeDirections)
-        {
-            
-            
-            if (!Physics2D.Raycast(transform.position, newDirection)) // 벽이 없는 방향 찾기
+            if (bloon != gameObject) // 자기 자신 제외
             {
-                transform.position += newDirection * 0.5f; // 벽 피하기
-                return;
+                Collider2D otherCollider = bloon.GetComponent<Collider2D>();
+                if (otherCollider != null)
+                {
+                    Physics2D.IgnoreCollision(myCollider, otherCollider);
+                }
             }
         }
-
     }
-    
+
+    //private void Update()
+    //{
+    //   
+    //    if (gameObject.transform.position.y <= -8.5f)
+    //    {
+    //        
+    //        gameObject.SetActive(false); // 이동이 끝나면 오브젝트 삭제
+    //    }
+    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == Finish)
+        {
+            gameObject.SetActive(false); // 이동이 끝나면 오브젝트 삭제
+        }
+    }
 }
+

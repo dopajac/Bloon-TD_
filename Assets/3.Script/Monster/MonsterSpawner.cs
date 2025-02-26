@@ -12,6 +12,7 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] private int poolSize = 10; // 한 종류당 미리 생성할 개수
     [SerializeField] private float spawnDelay = 2.0f;
 
+    [SerializeField] private int currentLevel = 1; // level 초기값 설정
 
     private void Awake()
     {
@@ -49,7 +50,6 @@ public class MonsterSpawner : MonoBehaviour
         }
         else
         {
-
             return CreateNewMonster(level);
         }
     }
@@ -114,10 +114,10 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
-    // UI 버튼 클릭 시 실행할 함수 (버튼에 연결 가능)
-    public void OnSpawnButtonClick(int level)
+    // UI 버튼 클릭 시 실행할 함수
+    public void OnSpawnButtonClick()
     {
-        SpawnAllMonstersWithInterval(level, spawnDelay);
+        SpawnAllMonstersWithInterval(currentLevel, spawnDelay);
+        currentLevel++; // level 증가
     }
-
 }

@@ -9,11 +9,12 @@ public class MonsterManager : MonoBehaviour
     [SerializeField] public int hp;
 
     private MonsterSpawner monsterSpawner;
-
     private Vector3 lastPosition;
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private GameObject finishobj;
+
+    private const float directionThreshold = 0.05f; // 이동 감지 임계값
 
     void Start()
     {
@@ -26,13 +27,17 @@ public class MonsterManager : MonoBehaviour
     {
         float moveDirection = transform.position.x - lastPosition.x;
 
-        if (moveDirection > 0) // 오른쪽 이동
+        // 일정 임계값 이상 이동했을 때만 방향 변경
+        if (Mathf.Abs(moveDirection) > directionThreshold)
         {
-            spriteRenderer.flipX = true;
-        }
-        else if (moveDirection < 0) // 왼쪽 이동
-        {
-            spriteRenderer.flipX = false;
+            if (moveDirection > 0) // 오른쪽 이동
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if (moveDirection < 0) // 왼쪽 이동
+            {
+                spriteRenderer.flipX = false;
+            }
         }
 
         lastPosition = transform.position;
@@ -42,8 +47,11 @@ public class MonsterManager : MonoBehaviour
     {
         hp -= damage;
         if (hp <= 0)
-        { Die(); }
+        {
+            Die();
+        }
     }
+
     private void Die()
     {
         Debug.Log($"{gameObject.name} 사망");
@@ -53,6 +61,5 @@ public class MonsterManager : MonoBehaviour
         {
             monsterSpawner.ReturnToPool(gameObject); // 몬스터 풀로 반환
         }
-        
     }
 }

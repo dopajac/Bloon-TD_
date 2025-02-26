@@ -6,16 +6,18 @@ public class AttackMonster : MonoBehaviour
 {
     private Animator animator;
     private Queue<GameObject> monstersInRange = new Queue<GameObject>(); // FIFO 구조 (먼저 들어온 몬스터 먼저 공격)
-
     private UserManager userManager;
+    private SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
         userManager = GetComponent<UserManager>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
-    { 
+    {
         // 일정 간격으로 공격 실행
         InvokeRepeating(nameof(Attack), 0, userManager.attackspeed);
     }
@@ -64,6 +66,13 @@ public class AttackMonster : MonoBehaviour
                     {
                         RemoveMonsterFromQueue(target);
                     }
+                }
+
+                // 플레이어가 몬스터를 바라보게 좌우 반전 적용
+                if (spriteRenderer != null)
+                {
+                    float direction = target.transform.position.x - transform.position.x;
+                    spriteRenderer.flipX = direction > 0; // 몬스터가 왼쪽이면 flipX = true, 오른쪽이면 false
                 }
             }
             else

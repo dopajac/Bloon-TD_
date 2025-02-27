@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Monster
+  - User
   layers:
   - Default
   - TransparentFX
@@ -13,12 +14,12 @@ TagManager:
   - Water
   - UI
   - Wall
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Adventurer
+  - Warrior
+  - 'Wizard '
+  - Archer
+  - Thief
+  - Pirate
   - 
   - 
   - 

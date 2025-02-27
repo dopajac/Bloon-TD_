@@ -101,9 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75cf868054fe1a45aca3a960bc3cf31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
+  level: 3
   hp: 0
-  finishobj: {fileID: 0}
 --- !u!114 &3629076663844369200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +119,7 @@ MonoBehaviour:
   m_PlayOnAwake: 1
   m_LoopMode: 1
   m_Method: 1
-  m_Duration: 41.169415
+  m_Duration: 35.041103
   m_MaxSpeed: 3
   m_EasingMode: 0
   m_AlignmentMode: 2

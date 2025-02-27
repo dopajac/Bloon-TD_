@@ -11,9 +11,8 @@ public class MonsterSpawner : MonoBehaviour
 
     [SerializeField] private int poolSize = 10; // 한 종류당 미리 생성할 개수
     [SerializeField] private float spawnDelay = 2.0f;
-
-    [SerializeField] private int currentLevel = 1; // level 초기값 설정
-
+    [SerializeField] private int currentLevel = 4; // level 초기값 설정
+    [SerializeField] public GameObject finishobj;
     private void Awake()
     {
         parentTransform = new GameObject("Monsters").transform;
@@ -68,8 +67,7 @@ public class MonsterSpawner : MonoBehaviour
                 MonsterPools[level] = new Queue<GameObject>();
             }
 
-            MonsterPools[level].Enqueue(newMonster);
-            return newMonster;
+            return newMonster; // 반환이 빠져 있었음!
         }
         else
         {
@@ -98,18 +96,16 @@ public class MonsterSpawner : MonoBehaviour
 
     private IEnumerator SpawnAllWithInterval(int level, float delay)
     {
-        if (MonsterPools.ContainsKey(level))
+        int spawnCount = poolSize; // 전체 개수만큼 스폰
+
+        for (int i = 0; i < spawnCount; i++)
         {
-            int count = MonsterPools[level].Count;
-            for (int i = 0; i < count; i++)
+            GameObject monster = GetPooledMonster(level);
+            if (monster != null)
             {
-                GameObject monster = GetPooledMonster(level);
-                if (monster != null)
-                {
-                    monster.transform.position = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0); // 원하는 위치 조정 가능
-                    monster.SetActive(true);
-                    yield return new WaitForSeconds(delay);
-                }
+                monster.transform.position = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0); // 위치 설정
+                monster.SetActive(true);
+                yield return new WaitForSeconds(delay);
             }
         }
     }
@@ -118,6 +114,5 @@ public class MonsterSpawner : MonoBehaviour
     public void OnSpawnButtonClick()
     {
         SpawnAllMonstersWithInterval(currentLevel, spawnDelay);
-        currentLevel++; // level 증가
     }
 }

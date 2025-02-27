@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Monster
   - User
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -19,18 +19,14 @@ public class ObjectDetector : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("Mouse Position: " + mousePosition);
-
             // 벽(Wall) 레이어만 감지하도록 설정
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero, Mathf.Infinity, wallLayer);
 
             if (hit.collider != null)
             {
-                Debug.Log("Hit Object: " + hit.collider.gameObject.name + ", Tag: " + hit.collider.tag);
             }
             else
             {
-                Debug.Log("No object detected at this position!");
             }
 
             if (hit.collider != null && hit.collider.CompareTag("Wall"))
@@ -39,8 +35,6 @@ public class ObjectDetector : MonoBehaviour
                     Mathf.Round(mousePosition.x / gridSize) * gridSize,
                     Mathf.Round(mousePosition.y / gridSize) * gridSize
                 );
-
-                Debug.Log("Snapped Position: " + snappedPosition);
 
                 userSpawner.UserSpawn(snappedPosition);
             }

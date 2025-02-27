@@ -4,7 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UserData", menuName = "Scriptable Object/UserData", order = int.MaxValue)]
 public class UserData : ScriptableObject
 {
-    
-
+    [SerializeField] public List<GameObject> UserList;
     
 }

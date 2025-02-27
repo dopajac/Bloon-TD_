@@ -61,7 +61,6 @@ public class MonsterManager : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log($"{gameObject.name} 사망");
         ReturnToPool();
     }
 
@@ -86,7 +85,6 @@ public class MonsterManager : MonoBehaviour
         // finishobj에 도달하면 풀로 반환
         if (collision.gameObject == monsterSpawner.finishobj)
         {
-            Debug.Log($"{gameObject.name}이(가) 목표 지점에 도착하여 풀로 반환됩니다.");
             ReturnToPool();
         }
     }

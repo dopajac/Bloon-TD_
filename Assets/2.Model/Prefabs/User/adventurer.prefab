@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 461028301394164723}
   - component: {fileID: 5887022254487505972}
   - component: {fileID: 2231198881566203905}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: adventurer
   m_TagString: User
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5213735
+  m_Radius: 1
 --- !u!95 &461028301394164723
 Animator:
   serializedVersion: 5
@@ -196,9 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1881741ae1e43964284018579dd4c9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UserName: adventurer
+  UserJob: adventurer
   attack: 1
   cost: 100
-  id: 1
+  id: 0
   attackspeed: 1
   upgrade: 0

@@ -196,9 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1881741ae1e43964284018579dd4c9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UserName: adventurer
+  UserJob: Bowmaster
   attack: 1
   cost: 100
-  id: 1
+  id: 16
   attackspeed: 1
   upgrade: 0

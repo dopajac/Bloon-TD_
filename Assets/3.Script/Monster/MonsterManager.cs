@@ -8,6 +8,7 @@ public class MonsterManager : MonoBehaviour
     [SerializeField] public int level; // 몬스터 레벨
     [SerializeField] public int hp;
     [SerializeField] public int experience;
+    private int initialHp; // 초기 체력 저장
     private MonsterSpawner monsterSpawner;
     private Vector3 lastPosition;
     private SpriteRenderer spriteRenderer;
@@ -17,13 +18,16 @@ public class MonsterManager : MonoBehaviour
     private const float directionThreshold = 0.05f; // 이동 감지 임계값
 
     private Animator animator;
+    private bool isDead = false;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         lastPosition = transform.position;
-        hp = level;
+
+        initialHp = hp; // 초기 체력 저장
+        isDead = false;
 
         // MonsterSpawner 자동 할당 (씬에서 찾아서 연결)
         if (monsterSpawner == null)
@@ -40,79 +44,111 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        float moveDirection = transform.position.x - lastPosition.x;
-
-        // 일정 임계값 이상 이동했을 때만 방향 변경
-        if (Mathf.Abs(moveDirection) > directionThreshold)
-        {
-            spriteRenderer.flipX = moveDirection > 0;
-        }
-
-        lastPosition = transform.position;
-    }
-
     public void TakeDamage(int damage)
     {
+        if (isDead) return;
+
         hp -= damage;
         Debug.Log("공격");
+
         if (hp <= 0)
         {
-            animator.SetBool("isDead", true);
+            Die();
+            GameManager.instance.Stageexperience += experience;
         }
     }
 
     private void Die()
     {
+        if (isDead) return;
+
+        isDead = true;
         GameManager.instance.meso += level;
-        RemoveFromMonsterList(); // 리스트에서 제거
-        ReturnToPool();
+
+        if (splineAnimate != null)
+        {
+            splineAnimate.Pause();
+        }
+
+        animator.SetBool("isDead", true);
+
+        // spawnedMonsterList에서도 제거
+        RemoveFromMonsterList();
+
+        // 애니메이션이 끝난 후 ReturnToPool 실행
+        Invoke(nameof(ReturnToPool), 1.0f);
     }
 
     private void ReturnToPool()
     {
+        if (!isDead) return;
+
+        isDead = false;
+        hp = initialHp; // 체력 초기화
+        animator.SetBool("isDead", false);
+
+        RemoveFromMonsterList();
+
         if (splineAnimate != null)
         {
-            transform.position = startPosition; // Spline 시작 위치로 초기화
-            splineAnimate.Restart(true); // Spline 애니메이션을 처음부터 다시 시작
+            transform.position = startPosition; // 위치 복구
+            splineAnimate.Restart(true);
         }
 
         gameObject.SetActive(false);
 
         if (monsterSpawner != null)
         {
-           monsterSpawner.ReturnToPool(gameObject); // 몬스터 풀로 반환
+            monsterSpawner.ReturnToPool(gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // finishobj에 도달하면 풀로 반환
+        if (monsterSpawner == null || monsterSpawner.finishobj == null) return;
+
+        // finishobj와 충돌하면
         if (collision.gameObject == monsterSpawner.finishobj)
         {
-            RemoveFromMonsterList(); // 리스트에서 제거
-            ReturnToPool();
+            // GameManager의 life 감소
             GameManager.instance.life--;
+            Debug.Log($"몬스터가 finishobj에 도달! 남은 생명: {GameManager.instance.life}");
+
+            // spawnedMonsterList에서도 제거
+            RemoveFromMonsterList();
+
+            // 즉시 비활성화하여 자동으로 다시 스폰되지 않도록 설정
+            gameObject.SetActive(false);
         }
     }
 
     public void Respawn()
     {
+        isDead = false;
+        hp = initialHp; // 체력 초기화
+        animator.SetBool("isDead", false);
+
         if (splineAnimate != null)
         {
+            transform.position = startPosition; // 초기 위치 복구
             splineAnimate.Restart(true);
-            transform.position = startPosition; // Spline 시작점에서 다시 시작
         }
+
         gameObject.SetActive(true);
     }
 
     private void RemoveFromMonsterList()
     {
-        // 몬스터가 리스트에 있으면 제거
-        if (monsterSpawner != null && monsterSpawner.monsterlist.Contains(gameObject))
+        if (monsterSpawner != null)
         {
-            monsterSpawner.monsterlist.Remove(gameObject);
+           
+            monsterSpawner.alivemonster.Remove(gameObject);
+            monsterSpawner.spawnedMonsterList.Remove(gameObject); // 추가: spawnedMonsterList에서도 제거
+            if (monsterSpawner.spawnedMonsterList.Count == 0)
+            {
+                Debug.Log("stage 끝");
+            }
         }
+
     }
 }

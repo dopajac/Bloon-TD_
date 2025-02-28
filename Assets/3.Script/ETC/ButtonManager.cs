@@ -9,7 +9,7 @@ public class ButtonManager : MonoBehaviour
 
     public UserInformation userInformation;
     private UserManager usermanager;
-
+    private MonsterSpawner monsterSpawner;
     [SerializeField]
     public UserData userdata;
 
@@ -17,7 +17,7 @@ public class ButtonManager : MonoBehaviour
     {
         objectdetector = objectdetec.GetComponent<ObjectDetector>();
         TryGetComponent(out userInformation);
-
+        monsterSpawner = FindObjectOfType<MonsterSpawner>();
     }
 
     
@@ -41,6 +41,26 @@ public class ButtonManager : MonoBehaviour
             }
         }
         return false; // 특정 UI 위가 아님
+    }
+
+    public void OnRespawnButtonClick()
+    {
+        StartCoroutine(RespawnMonstersWithInterval(monsterSpawner.spawnDelay));
+    }
+
+    private IEnumerator RespawnMonstersWithInterval(float delay)
+    {
+        List<GameObject> respawnList = new List<GameObject>(monsterSpawner.alivemonster);
+        monsterSpawner. alivemonster.Clear(); // 기존 리스트 초기화
+
+        foreach (GameObject monster in respawnList)
+        {
+            if (monster != null)
+            {
+                monster.GetComponent<MonsterManager>().Respawn(); // 몬스터 다시 활성화
+                yield return new WaitForSeconds(delay); // 일정 시간 간격을 두고 하나씩 소환
+            }
+        }
     }
 
 

@@ -36,7 +36,7 @@ public class AttackMonster : MonoBehaviour
                 monstersInRange.Enqueue(collision.gameObject); // 먼저 들어온 몬스터를 먼저 공격하기 위해 Queue 사용
             }
             animator.SetBool("isinRange", true);
-            InvokeRepeating(nameof(Attack), 1, userManager.attackspeed);
+            InvokeRepeating(nameof(Attack), 0, userManager.attackspeed);
         }
     }
 

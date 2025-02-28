@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UserInformation : MonoBehaviour
 {
-    [SerializeField] private CanvasObject Canvasobj;
 
     public UserManager Check_User_inform;
     private Camera mainCamera;
@@ -13,11 +12,10 @@ public class UserInformation : MonoBehaviour
 
     [SerializeField]
     public GameObject Check_User;
-
+    SpriteRenderer User_sprite;
     private void Awake()
     {
         mainCamera = Camera.main;
-        Canvasobj = GetComponent<CanvasObject>();
     }
     private void Update()
     {
@@ -41,22 +39,27 @@ public class UserInformation : MonoBehaviour
                 if (collider.CompareTag("User")) // "User" 태그가 있는 오브젝트가 감지되면
                 {
                     Check_User = collider.gameObject;
-                    Canvasobj.Information_Panel.SetActive(true);
+                    CanvasObject.instance.Information_Panel.SetActive(true);
 
                     Check_User_inform = Check_User.GetComponent<UserManager>();
 
-                    SpriteRenderer User_sprite;
+                    
                     User_sprite = Check_User.GetComponent<SpriteRenderer>();
 
-                    Canvasobj.User_image.sprite = User_sprite.sprite;
-
-                    Canvasobj.User_name.text = "유저 직업 : " + Check_User_inform.UserJob;
-                    Canvasobj.User_Upgrade.text = "업그레이드 레벨: " + Check_User_inform.upgrade.ToString();
-                    Canvasobj.User_Attack.text = "공격력 : " + Check_User_inform.attack.ToString();
-                    Canvasobj.User_AttackSpeed.text = "공격 속도 : " + Check_User_inform.attackspeed.ToString();
+                    SetInfoPanel();
                 }
             }
         }
+    }
+
+    public void SetInfoPanel()
+    {
+        CanvasObject.instance.User_image.sprite = User_sprite.sprite;
+
+        CanvasObject.instance.User_name.text = "유저 직업 : " + Check_User_inform.UserJob;
+        CanvasObject.instance.User_Upgrade.text = "강화 레벨: " + Check_User_inform.upgrade.ToString();
+        CanvasObject.instance.User_Attack.text = "공격력 : " + Check_User_inform.attack.ToString();
+        CanvasObject.instance.User_AttackSpeed.text = "공격 속도 : " + Check_User_inform.attackspeed.ToString();
     }
 
     

@@ -7,11 +7,12 @@ TagManager:
   - Monster
   - User
   - Wall
+  - AttackRange
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Panel
   - Water
   - UI
   - Wall

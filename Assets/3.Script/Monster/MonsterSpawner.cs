@@ -11,8 +11,11 @@ public class MonsterSpawner : MonoBehaviour
 
     [SerializeField] private int poolSize = 10; // 한 종류당 미리 생성할 개수
     [SerializeField] private float spawnDelay = 2.0f;
-    [SerializeField] private int currentLevel = 4; // level 초기값 설정
+    [SerializeField] private int currentLevel = 3; // level 초기값 설정
     [SerializeField] public GameObject finishobj;
+
+    [SerializeField] public List<GameObject> monsterlist = new List<GameObject>(); // 스폰된 몬스터들을 저장할 리스트
+
     private void Awake()
     {
         parentTransform = new GameObject("Monsters").transform;
@@ -67,7 +70,7 @@ public class MonsterSpawner : MonoBehaviour
                 MonsterPools[level] = new Queue<GameObject>();
             }
 
-            return newMonster; // 반환이 빠져 있었음!
+            return newMonster;
         }
         else
         {
@@ -82,6 +85,12 @@ public class MonsterSpawner : MonoBehaviour
         if (!MonsterPools.ContainsKey(level))
         {
             return;
+        }
+
+        // monsterlist에서 제거
+        if (monsterlist.Contains(Monster))
+        {
+            monsterlist.Remove(Monster);
         }
 
         Monster.SetActive(false);
@@ -105,6 +114,13 @@ public class MonsterSpawner : MonoBehaviour
             {
                 monster.transform.position = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0); // 위치 설정
                 monster.SetActive(true);
+
+                // monsterlist에 추가
+                if (!monsterlist.Contains(monster))
+                {
+                    monsterlist.Add(monster);
+                }
+
                 yield return new WaitForSeconds(delay);
             }
         }

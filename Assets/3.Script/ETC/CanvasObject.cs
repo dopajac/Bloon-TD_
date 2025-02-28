@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class CanvasObject : MonoBehaviour
 {
+    public static CanvasObject instance;
+
     [SerializeField]
     public GameObject Information_Panel;
-    
     [SerializeField]
     public Image User_image;
     [SerializeField]
@@ -34,7 +35,19 @@ public class CanvasObject : MonoBehaviour
     public GameObject ArcherUpgrade_Panel;
     [SerializeField]
     public GameObject PirateUpgrade_Panel;
-
     [SerializeField]
-    public UserData userdata;
+    public Text User_meso;
+    [SerializeField]
+    public Text User_life;
+
+    
+    
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            return;
+        }
+        instance = this;
+    }
 }

@@ -197,8 +197,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserJob: Bulldog
-  attack: 1
+  attack: 0
   cost: 100
   id: 10
   attackspeed: 1
   upgrade: 0
+  level: 0
+  max_experience: 0
+  cur_experience: 0

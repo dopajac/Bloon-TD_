@@ -5,21 +5,26 @@ using UnityEngine;
 public class AttackMonster : MonoBehaviour
 {
     private Animator animator;
-    private Queue<GameObject> monstersInRange = new Queue<GameObject>(); // FIFO 구조 (먼저 들어온 몬스터 먼저 공격)
-    private UserManager userManager;
+    [SerializeField] public Queue<GameObject> monstersInRange = new Queue<GameObject>(); // FIFO 구조 (먼저 들어온 몬스터 먼저 공격)
+    public UserManager userManager;
     private SpriteRenderer spriteRenderer;
-
+    public GameObject target;
     private void Awake()
     {
-        userManager = GetComponent<UserManager>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        animator = transform.parent.GetComponent<Animator>();
+        spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
+        userManager = transform.parent.GetComponent<UserManager>();
+        if (userManager == null)
+        {
+            Debug.LogError("UserManager를 부모에서 찾을 수 없습니다.");
+        }
         // 일정 간격으로 공격 실행
-        InvokeRepeating(nameof(Attack), 0, userManager.attackspeed);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,6 +36,7 @@ public class AttackMonster : MonoBehaviour
                 monstersInRange.Enqueue(collision.gameObject); // 먼저 들어온 몬스터를 먼저 공격하기 위해 Queue 사용
             }
             animator.SetBool("isinRange", true);
+            InvokeRepeating(nameof(Attack), 1, userManager.attackspeed);
         }
     }
 
@@ -52,7 +58,9 @@ public class AttackMonster : MonoBehaviour
     {
         if (monstersInRange.Count > 0)
         {
-            GameObject target = monstersInRange.Peek(); // 먼저 들어온 몬스터 가져오기 (삭제 X)
+            Debug.Log("1");
+            target = monstersInRange.Peek(); // 먼저 들어온 몬스터 가져오기 (삭제 X)
+            Debug.Log("2");
             if (target != null)
             {
                 // 몬스터 체력 감소
@@ -60,7 +68,7 @@ public class AttackMonster : MonoBehaviour
                 if (monsterManager != null)
                 {
                     monsterManager.TakeDamage(userManager.attack);
-
+                    Debug.Log("어택");
                     // 몬스터 체력이 0 이하라면 제거
                     if (monsterManager.hp <= 0)
                     {
@@ -79,6 +87,7 @@ public class AttackMonster : MonoBehaviour
             {
                 // null 오브젝트 삭제
                 monstersInRange.Dequeue();
+
             }
         }
     }
@@ -93,6 +102,7 @@ public class AttackMonster : MonoBehaviour
             while (monstersInRange.Count > 0)
             {
                 GameObject m = monstersInRange.Dequeue();
+                
                 if (m != monster) newQueue.Enqueue(m);
             }
 

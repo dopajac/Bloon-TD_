@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public int StageLevel;
     [SerializeField]
-    public int Stageexperience;
+    public int StageExperience;
     [SerializeField]
     
     private void Awake()

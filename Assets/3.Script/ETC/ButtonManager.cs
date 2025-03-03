@@ -47,12 +47,12 @@ public class ButtonManager : MonoBehaviour
     {
         StartCoroutine(RespawnMonstersWithInterval(monsterSpawner.spawnDelay));
     }
-
+    
     private IEnumerator RespawnMonstersWithInterval(float delay)
     {
         List<GameObject> respawnList = new List<GameObject>(monsterSpawner.alivemonster);
         monsterSpawner. alivemonster.Clear(); // 기존 리스트 초기화
-
+    
         foreach (GameObject monster in respawnList)
         {
             if (monster != null)

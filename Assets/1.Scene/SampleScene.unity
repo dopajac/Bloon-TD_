@@ -9625,7 +9625,7 @@ MonoBehaviour:
   meso: 0
   life: 0
   StageLevel: 0
-  Stageexperience: 0
+  StageExperience: 0
 --- !u!1 &1204034471
 GameObject:
   m_ObjectHideFlags: 0
@@ -11602,12 +11602,13 @@ MonoBehaviour:
   - {fileID: 757301000798864086, guid: 16fe4c9744439c54b89efbfb036ffa5b, type: 3}
   - {fileID: 4227620200150103802, guid: a7a35368eac56e94681a6c885a43b658, type: 3}
   - {fileID: 8365786669080002503, guid: d4de281427fd24d4785429485a5ab868, type: 3}
-  poolSize: 10
   spawnDelay: 1
-  currentLevel: 4
-  finishobj: {fileID: 358767653}
-  alivemonster: []
+  currentLevel: 2
+  monstercount: 10
   spawnedMonsterList: []
+  alivemonster: []
+  finishobj: {fileID: 358767653}
+  cur_mostercount: 0
 --- !u!1 &1682966792
 GameObject:
   m_ObjectHideFlags: 0
@@ -12420,7 +12421,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1648777849}
         m_TargetAssemblyTypeName: MonsterSpawner, Assembly-CSharp
-        m_MethodName: OnSpawnButtonClick
+        m_MethodName: StartSpawning
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

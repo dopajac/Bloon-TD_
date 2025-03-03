@@ -340,6 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userManager: {fileID: 0}
   target: {fileID: 0}
+  bulletController: {fileID: 6439526062289897460}
 --- !u!1001 &7559387505495871172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -351,6 +352,10 @@ PrefabInstance:
     - target: {fileID: 2762165031432555326, guid: 897437b92c75c8149bf0f81b70ce233a, type: 3}
       propertyPath: m_Name
       value: adventurer skill
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762165031432555326, guid: 897437b92c75c8149bf0f81b70ce233a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7251212339240906277, guid: 897437b92c75c8149bf0f81b70ce233a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -398,7 +403,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2762165031432555326, guid: 897437b92c75c8149bf0f81b70ce233a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 385920892152273567}
+      addedObject: {fileID: 6439526062289897460}
   m_SourcePrefab: {fileID: 100100000, guid: 897437b92c75c8149bf0f81b70ce233a, type: 3}
 --- !u!4 &885289202122072289 stripped
 Transform:
@@ -410,7 +415,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2762165031432555326, guid: 897437b92c75c8149bf0f81b70ce233a, type: 3}
   m_PrefabInstance: {fileID: 7559387505495871172}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &385920892152273567
+--- !u!114 &6439526062289897460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -419,8 +424,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5673823685510727162}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b1e4243dbd0cab4bacb15c920cc254b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a17c3a0e31faec49af416f276a28736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userManager: {fileID: 0}
   target: {fileID: 0}
+  speed: 5
+  damage: 10
+  initialPosition: {fileID: 4025729888813766416}

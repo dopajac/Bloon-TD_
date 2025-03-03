@@ -12,6 +12,8 @@ public class CanvasObject : MonoBehaviour
     [SerializeField]
     public Image User_image;
     [SerializeField]
+    public Text User_Lv;
+    [SerializeField]
     public Text User_name;
     [SerializeField]
     public Text User_Upgrade;
@@ -40,8 +42,10 @@ public class CanvasObject : MonoBehaviour
     [SerializeField]
     public Text User_life;
 
-    
-    
+    [SerializeField]
+    public Button JobUpgradeButton;
+
+
     private void Awake()
     {
         if (instance != null)

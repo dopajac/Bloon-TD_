@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   hp: 1
-  experience: 3
+  experience: 5
 --- !u!114 &6731141470548501712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 1097551039443055959, guid: fe293b4c5a0e2dc43a78df486ea4551f, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_LoopMode: 1
   m_Method: 1
   m_Duration: 29.458029

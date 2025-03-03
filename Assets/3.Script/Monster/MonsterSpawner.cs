@@ -46,6 +46,7 @@ public class MonsterSpawner : MonoBehaviour
             {
                 Debug.Log("최대 몬스터 개수(10)에 도달하여 스폰 중지");
                 StopSpawning();
+                
             }
 
             yield return new WaitForSeconds(spawnDelay);

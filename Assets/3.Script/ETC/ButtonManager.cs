@@ -156,6 +156,9 @@ public class ButtonManager : MonoBehaviour
 
         // UI 업데이트
         userInformation.SetInfoPanel();
+        userInformation.OpenJobUpgradeButton();
+
+
     }
 
 

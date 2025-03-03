@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 2
   hp: 2
-  experience: 0
+  experience: 7
 --- !u!114 &2028281523524082435
 MonoBehaviour:
   m_ObjectHideFlags: 0

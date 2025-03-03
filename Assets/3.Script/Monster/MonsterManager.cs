@@ -21,7 +21,7 @@ public class MonsterManager : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        initialHp = hp*4;
+        initialHp = hp;
         isDead = false;
 
         if (monsterSpawner == null)
@@ -46,7 +46,8 @@ public class MonsterManager : MonoBehaviour
         if (hp <= 0)
         {
             Die();
-            GameManager.instance.StageExperience += experience;
+           
+            
         }
     }
 
@@ -56,7 +57,7 @@ public class MonsterManager : MonoBehaviour
 
         isDead = true;
         GameManager.instance.meso += level;
-
+        GameManager.instance.StageExperience += experience;
         if (splineAnimate != null)
         {
             splineAnimate.Pause();
@@ -70,17 +71,14 @@ public class MonsterManager : MonoBehaviour
         // 애니메이션 후 ReturnToPool 실행
         Invoke(nameof(ReturnToPool), 1.0f);
 
-        if (monsterSpawner.cur_mostercount == 10 && monsterSpawner.spawnedMonsterList.Count == 0)
-        {
-            Debug.Log("stage is clear");
-        }
+        Invoke(nameof(CheckStageClear), 0.1f);
+
     }
 
     private void ReturnToPool()
     {
         if (!isDead) return;
 
-        isDead = false;
         hp = initialHp;
         animator.SetBool("isDead", false);
 
@@ -93,12 +91,9 @@ public class MonsterManager : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-
-        if (monsterSpawner != null)
-        {
-           // monsterSpawner.ReturnToPool(gameObject);
-        }
+        isDead = false; // 여기서 상태를 변경
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -117,15 +112,24 @@ public class MonsterManager : MonoBehaviour
             Debug.Log($"몬스터가 finishobj에 도달! 남은 생명: {GameManager.instance.life}");
 
             // `spawnedMonsterList`에서 제거하지만, `alivemonster`에는 남겨둠
-            monsterSpawner.spawnedMonsterList.Remove(gameObject);
             transform.position = new Vector3(-20, -20, 0);
             gameObject.SetActive(false);
 
-            if (monsterSpawner.cur_mostercount == 10 && monsterSpawner.spawnedMonsterList.Count == 0)
-            {
-                Debug.Log("stage is clear");
-            }
+            Invoke(nameof(CheckStageClear), 0.1f);
 
+            monsterSpawner.spawnedMonsterList.Remove(gameObject);
+        }
+    }
+    private void CheckStageClear()
+    {
+        if (monsterSpawner.cur_mostercount == 10 && monsterSpawner.spawnedMonsterList.Count == 0)
+        {
+            GameManager.instance.isStagefinish = true;
+            Debug.Log("stage is clear");
+
+            GameManager.instance.AddExperienceToUsers();
+            GameManager.instance.StageExperience = 0;
+            monsterSpawner.cur_mostercount = 0;
         }
     }
 

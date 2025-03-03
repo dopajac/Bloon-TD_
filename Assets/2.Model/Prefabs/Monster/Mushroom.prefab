@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 1097551039443055959, guid: fe293b4c5a0e2dc43a78df486ea4551f, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_LoopMode: 1
   m_Method: 1
   m_Duration: 17.674816

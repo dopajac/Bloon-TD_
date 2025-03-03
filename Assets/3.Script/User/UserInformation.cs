@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UserInformation : MonoBehaviour
 {
@@ -47,6 +48,7 @@ public class UserInformation : MonoBehaviour
                     User_sprite = Check_User.GetComponent<SpriteRenderer>();
 
                     SetInfoPanel();
+                    OpenJobUpgradeButton();
                 }
             }
         }
@@ -55,12 +57,33 @@ public class UserInformation : MonoBehaviour
     public void SetInfoPanel()
     {
         CanvasObject.instance.User_image.sprite = User_sprite.sprite;
-
+        CanvasObject.instance.User_Lv.text = "Lv. : " + Check_User_inform.level;
         CanvasObject.instance.User_name.text = "유저 직업 : " + Check_User_inform.UserJob;
         CanvasObject.instance.User_Upgrade.text = "강화 레벨: " + Check_User_inform.upgrade.ToString();
         CanvasObject.instance.User_Attack.text = "공격력 : " + Check_User_inform.attack.ToString();
         CanvasObject.instance.User_AttackSpeed.text = "공격 속도 : " + Check_User_inform.attackspeed.ToString();
     }
+    public bool OpenJobUpgrade()
+    {
+        int requiredLevel = Check_User_inform.JobLevel switch
+        {
+            0 => 10,
+            1 => 20,
+            2 => 30,
+            _ => int.MaxValue // 기본적으로 불가능하도록 설정
+        };
 
-    
+        return Check_User_inform.level >= requiredLevel;
+    }
+
+
+    public void OpenJobUpgradeButton()
+    {
+        if (OpenJobUpgrade())
+        {
+            CanvasObject.instance.JobUpgradeButton = CanvasObject.instance.JobUpgradeButton.transform.GetComponent<Button>();
+            CanvasObject.instance.JobUpgradeButton.interactable = true;
+        }
+        
+    }
 }

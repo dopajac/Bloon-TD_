@@ -22,6 +22,8 @@ public class CanvasObject : MonoBehaviour
     [SerializeField]
     public Text User_AttackSpeed;
     [SerializeField]
+    public Text User_exp;
+    [SerializeField]
     public GameObject SetCheckBox;
     [SerializeField]
     public GameObject JobUpgrade_Panel;
@@ -44,6 +46,9 @@ public class CanvasObject : MonoBehaviour
 
     [SerializeField]
     public Button JobUpgradeButton;
+
+    [SerializeField] public Slider sliderEXP;
+
 
 
     private void Awake()

@@ -13,10 +13,25 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] public List<GameObject> alivemonster = new List<GameObject>(); // 살아있는 몬스터 리스트
 
     [SerializeField] public GameObject finishobj;
+    [SerializeField] private Transform monsterParent; // 몬스터 리스트 부모 오브젝트
 
     public int cur_mostercount = 0;
 
     private bool isSpawning = false; // 중복 스폰 방지 플래그
+
+    private void Awake()
+    {
+        // "MonsterList"라는 이름의 부모 오브젝트를 생성 (이미 있으면 사용)
+        if (monsterParent == null)
+        {
+            GameObject monsterListObj = GameObject.Find("MonsterList");
+            if (monsterListObj == null)
+            {
+                monsterListObj = new GameObject("MonsterList");
+            }
+            monsterParent = monsterListObj.transform;
+        }
+    }
 
     public void StartSpawning()
     {
@@ -34,7 +49,7 @@ public class MonsterSpawner : MonoBehaviour
     private IEnumerator SpawnMonsterWithDelay()
     {
         isSpawning = true;
-        
+
         while (isSpawning)
         {
             if (cur_mostercount < monstercount) // 10마리까지만 소환
@@ -46,7 +61,6 @@ public class MonsterSpawner : MonoBehaviour
             {
                 Debug.Log("최대 몬스터 개수(10)에 도달하여 스폰 중지");
                 StopSpawning();
-                
             }
 
             yield return new WaitForSeconds(spawnDelay);
@@ -59,18 +73,13 @@ public class MonsterSpawner : MonoBehaviour
         if (prefab != null)
         {
             GameObject monster = Instantiate(prefab, new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Quaternion.identity);
-            monster.SetActive(true);
 
+            // 생성된 몬스터를 "MonsterList" 부모 오브젝트 아래에 배치
+            monster.transform.SetParent(monsterParent, false);
+
+            monster.SetActive(true);
             spawnedMonsterList.Add(monster); // 리스트에 추가
             Debug.Log($"[MonsterSpawner] 몬스터 스폰됨: {monster.name}");
         }
     }
-
-    //public void RemoveMonster(GameObject monster)
-    //{
-    //    if (spawnedMonsterList.Contains(monster))
-    //    {
-    //        spawnedMonsterList.Remove(monster);
-    //    }
-    //}
 }

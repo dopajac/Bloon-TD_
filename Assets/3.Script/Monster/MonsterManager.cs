@@ -17,6 +17,9 @@ public class MonsterManager : MonoBehaviour
     private SplineAnimate splineAnimate;
     private SpriteRenderer spriteRenderer;
 
+    public delegate void MonsterDeathEvent(GameObject monster);
+    public static event MonsterDeathEvent OnMonsterDeath;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -45,9 +48,7 @@ public class MonsterManager : MonoBehaviour
 
         if (hp <= 0)
         {
-            Die();
-           
-            
+            Die(); 
         }
     }
 
@@ -125,10 +126,10 @@ public class MonsterManager : MonoBehaviour
         {
             GameManager.instance.isStagefinish = true;
             Debug.Log("stage is clear");
-
-            GameManager.instance.AddExperienceToUsers();
             GameManager.instance.StageExperience = 0;
             monsterSpawner.cur_mostercount = 0;
+            GameManager.instance.AddExperienceToUsers();
+            
         }
     }
 

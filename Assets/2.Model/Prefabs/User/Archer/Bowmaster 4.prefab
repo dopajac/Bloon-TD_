@@ -78,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 3c3c04f062141444793de123a6f15fc9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8777e8575f986d0459854977590b9c32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.54, y: 0.79}
+  m_Size: {x: 0.85, y: 0.88}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -161,7 +161,7 @@ Animator:
   m_GameObject: {fileID: 5315291990432115921}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aaafb560091106d40ac5d532d41b3118, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9040a7391bfe97c4f96dab4df4a5c57c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -184,6 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1e4243dbd0cab4bacb15c920cc254b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userManager: {fileID: 0}
+  target: {fileID: 0}
+  bulletController: {fileID: 0}
 --- !u!114 &2231198881566203905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserJob: Bowmaster
+  JobLevel: 0
   attack: 0
   cost: 100
   id: 16

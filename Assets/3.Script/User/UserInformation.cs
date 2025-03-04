@@ -62,6 +62,17 @@ public class UserInformation : MonoBehaviour
         CanvasObject.instance.User_Upgrade.text = "강화 레벨: " + Check_User_inform.upgrade.ToString();
         CanvasObject.instance.User_Attack.text = "공격력 : " + Check_User_inform.attack.ToString();
         CanvasObject.instance.User_AttackSpeed.text = "공격 속도 : " + Check_User_inform.attackspeed.ToString();
+        CanvasObject.instance.User_exp.text = Check_User_inform.cur_experience.ToString() + " / " + Check_User_inform.max_experience.ToString();
+        
+        if (Check_User_inform.max_experience > 0)
+        {
+            CanvasObject.instance.sliderEXP.value = Check_User_inform.cur_experience / Check_User_inform.max_experience;
+        }
+        else
+        {
+            CanvasObject.instance.sliderEXP.value = 0; // 방어 코드 (0으로 나누는 오류 방지)
+        }
+
     }
     public bool OpenJobUpgrade()
     {

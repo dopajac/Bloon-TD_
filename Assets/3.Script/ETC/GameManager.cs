@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    [SerializeField] private UserInformation userinfo;
     public int meso; // 메소
     [SerializeField]
     public int life;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public bool isStagefinish=false;
     private void Awake()
     {
+        TryGetComponent(out userinfo);
         if (instance != null)
         {
             return;
@@ -46,7 +48,16 @@ public class GameManager : MonoBehaviour
         {
             user.Getexperience(experienceToAdd);
         }
-
+        
+        if (userinfo.Check_User_inform.max_experience > 0)
+        {
+            CanvasObject.instance.sliderEXP.value = userinfo.Check_User_inform.cur_experience / userinfo.Check_User_inform.max_experience;
+        }
+        else
+        {
+            CanvasObject.instance.sliderEXP.value = 0; // 방어 코드 (0으로 나누는 오류 방지)
+        }
+        CanvasObject.instance.User_exp.text = userinfo.Check_User_inform.cur_experience.ToString() + " / " + userinfo.Check_User_inform.max_experience.ToString();
         Debug.Log($"스테이지 클리어! 모든 유저에게 {experienceToAdd} 경험치 추가됨.");
     }
 

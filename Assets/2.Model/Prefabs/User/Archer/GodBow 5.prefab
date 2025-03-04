@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5315291990432115921}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.5, y: 5.5, z: 0}
+  m_LocalPosition: {x: -8.53, y: 5.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -184,6 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1e4243dbd0cab4bacb15c920cc254b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userManager: {fileID: 0}
+  target: {fileID: 0}
+  bulletController: {fileID: 0}
 --- !u!114 &2231198881566203905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserJob: GodBow
+  JobLevel: 0
   attack: 0
   cost: 100
   id: 19

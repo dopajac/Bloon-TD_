@@ -99,8 +99,7 @@ public class MonsterManager : MonoBehaviour
     {
         if (monsterSpawner == null || monsterSpawner.finishobj == null) return;
 
-        if (collision.gameObject == monsterSpawner.finishobj)
-        {
+        if (collision.gameObject == monsterSpawner.finishobj)        {
             // 몬스터가 도착했음을 `alivemonster`에 추가
             if (!monsterSpawner.alivemonster.Contains(gameObject))
             {

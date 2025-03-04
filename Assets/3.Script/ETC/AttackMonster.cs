@@ -66,8 +66,7 @@ public class AttackMonster : MonoBehaviour
         if (target != null && bulletController != null)
         {
             bulletController.ActivateBullet(target); // 기존 Bullet을 활성화하여 사용
-        }
-        else
+        }        else
         {
             // 타겟이 없으면 공격 중지
             CancelInvoke(nameof(Attack));

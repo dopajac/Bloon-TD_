@@ -77,10 +77,12 @@ public class AttackMonster : MonoBehaviour
         else
         {
             CancelInvoke(nameof(Attack));
-            animator.SetBool("isinRange", false);
+           // animator.SetBool("isinRange", false);
             target = null;
         }
     }
+
+    
 
     private bool IsTargetDead(GameObject monster)
     {

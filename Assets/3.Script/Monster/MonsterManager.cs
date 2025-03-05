@@ -126,10 +126,11 @@ public class MonsterManager : MonoBehaviour
         {
             GameManager.instance.isStagefinish = true;
             Debug.Log("stage is clear");
-            GameManager.instance.StageExperience = 0;
+            
             monsterSpawner.cur_mostercount = 0;
             GameManager.instance.AddExperienceToUsers();
-            
+            GameManager.instance.StageExperience = 0;
+
         }
     }
 

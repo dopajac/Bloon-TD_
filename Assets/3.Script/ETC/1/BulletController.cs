@@ -5,16 +5,19 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public GameObject target; // 따라갈 적
-    public float speed = 5f; // 총알 속도
-    public int damage = 10; // 데미지
+    public float speed; // 총알 속도
+    public int damage; // 데미지
     public Transform initialPosition; // 초기 위치 (Adventurer 위치)
     private bool isActive = false; // 총알 활성화 여부
-
+    private UserManager usermanager;
     private Animator animator; // 애니메이션 컨트롤러
 
     private void Awake()
     {
         animator = GetComponent<Animator>(); // Animator 가져오기
+        usermanager = transform.parent.GetComponent<UserManager>();
+
+        
     }
 
     private void Update()
@@ -33,6 +36,8 @@ public class BulletController : MonoBehaviour
         {
             HitTarget();
         }
+        damage = usermanager.attack;
+        speed = usermanager.attackspeed;
     }
 
     public void ActivateBullet(GameObject newTarget)
@@ -50,6 +55,7 @@ public class BulletController : MonoBehaviour
             MonsterManager monsterManager = target.GetComponent<MonsterManager>();
             if (monsterManager != null)
             {
+                
                 monsterManager.TakeDamage(damage);
             }
         }

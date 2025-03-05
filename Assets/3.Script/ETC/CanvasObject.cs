@@ -20,8 +20,6 @@ public class CanvasObject : MonoBehaviour
     [SerializeField]
     public Text User_Attack;
     [SerializeField]
-    public Text User_AttackSpeed;
-    [SerializeField]
     public Text User_exp;
     [SerializeField]
     public GameObject SetCheckBox;

@@ -12,12 +12,13 @@ public class ButtonManager : MonoBehaviour
     private MonsterSpawner monsterSpawner;
     [SerializeField]
     public UserData userdata;
-
+    int id = 0;
     private void Start()
     {
         objectdetector = objectdetec.GetComponent<ObjectDetector>();
         TryGetComponent(out userInformation);
         monsterSpawner = FindObjectOfType<MonsterSpawner>();
+        
     }
 
     
@@ -92,31 +93,56 @@ public class ButtonManager : MonoBehaviour
 
     public void OnbuttonJobUpgrade()
     {
+        
         CanvasObject.instance.JobUpgrade_Panel.SetActive(true);
-        if (userInformation.Check_User.layer == LayerMask.NameToLayer("Adventurer"))
+        usermanager = userInformation.Check_User.GetComponent<UserManager>();
+        
+        if (usermanager.JobLevel == 0)
         {
-            CanvasObject.instance.adventurerUpgrade_Panel.SetActive(true);
+            if (userInformation.Check_User.layer == LayerMask.NameToLayer("Adventurer"))
+            {
+                CanvasObject.instance.adventurerUpgrade_Panel.SetActive(true);
+            }
+             if (userInformation.Check_User.layer == LayerMask.NameToLayer("Warrior"))
+            {
+                CanvasObject.instance.WarriorUpgrade_Panel.SetActive(true);
+            }
+            if (userInformation.Check_User.layer == LayerMask.NameToLayer("Wizard"))
+            {
+                CanvasObject.instance.WizardUpgrade_Panel.SetActive(true);
+                Debug.Log("panel open");
+            }
+             if (userInformation.Check_User.layer == LayerMask.NameToLayer("Archer"))
+            {
+                CanvasObject.instance.ArcherUpgrade_Panel.SetActive(true);
+            }
+             if (userInformation.Check_User.layer == LayerMask.NameToLayer("Thief"))
+            {
+                CanvasObject.instance.ThiefUpgrade_Panel.SetActive(true);
+            }
+             if (userInformation.Check_User.layer == LayerMask.NameToLayer("Pirate"))
+            {
+                CanvasObject.instance.PirateUpgrade_Panel.SetActive(true);
+            }
+            
+            
         }
-        else if (userInformation.Check_User.layer == LayerMask.NameToLayer("Warrior"))
+        else if (usermanager.JobLevel == 1)
         {
-            CanvasObject.instance.WarriorUpgrade_Panel.SetActive(true);
+            // 제외해야 하는 id 리스트
+            HashSet<int> excludedIds = new HashSet<int> { 1, 8, 15, 19, 20, 21, 22, 23, 24, 25 };
+
+            // id가 28 이하이고 제외 리스트에 포함되지 않은 경우에만 실행
+            if (usermanager.id < 28 && !excludedIds.Contains(usermanager.id))
+            {
+                id = usermanager.id + 1; // 기본적으로 id 증가
+
+                OnbuttonChooseJob(id);
+                usermanager.JobLevel++;
+            }
         }
-        else if (userInformation.Check_User.layer == LayerMask.NameToLayer("Wizard"))
-        {
-            CanvasObject.instance.WizardUpgrade_Panel.SetActive(true);
-        }
-        else if (userInformation.Check_User.layer == LayerMask.NameToLayer("Archer"))
-        {
-            CanvasObject.instance.ArcherUpgrade_Panel.SetActive(true);
-        }
-        else if (userInformation.Check_User.layer == LayerMask.NameToLayer("Thief"))
-        {
-            CanvasObject.instance.ThiefUpgrade_Panel.SetActive(true);
-        }
-        else if (userInformation.Check_User.layer == LayerMask.NameToLayer("Pirate"))
-        {
-            CanvasObject.instance.PirateUpgrade_Panel.SetActive(true);
-        }
+
+
     }
 
     public void OnbuttonChooseJob(int id)
@@ -140,7 +166,7 @@ public class ButtonManager : MonoBehaviour
         userInformation.Check_User = newUser;
         userInformation.Check_User_inform = newUser.GetComponent<UserManager>();
 
-
+        
         userInformation.Check_User_inform.level = oldLevel;
         userInformation.Check_User_inform.attack = oldAttackPower;
         userInformation.Check_User_inform.max_experience = oldmax_Exp;

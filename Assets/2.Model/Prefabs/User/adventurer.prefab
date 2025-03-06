@@ -157,7 +157,7 @@ MonoBehaviour:
   id: 0
   attackspeed: 3
   upgrade: 0
-  level: 1
+  level: 100
   max_experience: 0
   cur_experience: 0
 --- !u!61 &1469756893360068470

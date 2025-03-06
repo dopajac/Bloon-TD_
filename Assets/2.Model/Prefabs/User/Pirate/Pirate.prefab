@@ -447,6 +447,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pirate skill
       objectReference: {fileID: 0}
+    - target: {fileID: 6883034796236407605, guid: 532f22fa249ee8e4999283c2a48b3455, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9016159517652188278, guid: 532f22fa249ee8e4999283c2a48b3455, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7

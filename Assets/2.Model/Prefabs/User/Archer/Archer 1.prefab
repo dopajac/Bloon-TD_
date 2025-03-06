@@ -269,7 +269,7 @@ MonoBehaviour:
   JobLevel: 0
   attack: 0
   cost: 0
-  id: 0
+  id: 15
   attackspeed: 0
   upgrade: 0
   level: 1

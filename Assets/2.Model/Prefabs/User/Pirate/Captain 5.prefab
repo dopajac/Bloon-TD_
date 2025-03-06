@@ -140,7 +140,6 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 4025729888813766416}
   bulletSpeed: 5
   userManager: {fileID: 0}
-  bullet: {fileID: 0}
   targetMonster: {fileID: 0}
 --- !u!1 &5315291990432115921
 GameObject:
@@ -438,7 +437,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2520001174070008106, guid: 93702d4d2302e824091db1b218f624e6, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4259613461302127774, guid: 93702d4d2302e824091db1b218f624e6, type: 3}
       propertyPath: m_Name

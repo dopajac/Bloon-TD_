@@ -146,6 +146,7 @@ MonoBehaviour:
   effectDuration: 1
   circlecollider: {fileID: 0}
   monstersInRange: []
+  targetMonster: {fileID: 0}
   userManager: {fileID: 0}
 --- !u!1 &5315291990432115921
 GameObject:
@@ -370,6 +371,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6690334044656367947, guid: 73f203ec263f9f647a80add34915c1da, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8595012998769653728, guid: 73f203ec263f9f647a80add34915c1da, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5579
@@ -507,7 +512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8017222457191114074, guid: abebb1f35af8d374cae4aea240f7cfce, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

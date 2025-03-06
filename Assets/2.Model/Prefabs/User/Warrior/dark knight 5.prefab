@@ -350,6 +350,7 @@ MonoBehaviour:
   effectDuration: 1
   circlecollider: {fileID: 0}
   monstersInRange: []
+  targetMonster: {fileID: 0}
   userManager: {fileID: 0}
 --- !u!1001 &472308920997338325
 PrefabInstance:
@@ -409,7 +410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6267029520544301749, guid: 5670b20338acd274b988b80f80668e95, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8242212110661301873, guid: 5670b20338acd274b988b80f80668e95, type: 3}
       propertyPath: m_Name

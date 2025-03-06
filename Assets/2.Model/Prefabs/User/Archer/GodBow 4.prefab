@@ -404,6 +404,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4826077718906927494, guid: f4317725a56739d45bcedeab0ae827ca, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8819061320467789040, guid: f4317725a56739d45bcedeab0ae827ca, type: 3}
       propertyPath: m_Name
       value: Godbow4 bullet

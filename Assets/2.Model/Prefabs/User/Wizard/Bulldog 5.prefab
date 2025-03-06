@@ -350,6 +350,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4025729888813766416}
     m_Modifications:
+    - target: {fileID: 1093880206568641783, guid: df90f49b555560648a4d7093616405ab, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2456994607996767057, guid: df90f49b555560648a4d7093616405ab, type: 3}
       propertyPath: m_Name
       value: Bulldog 5 skill
@@ -488,6 +492,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4025729888813766416}
     m_Modifications:
+    - target: {fileID: 1426357800071169303, guid: 8ae1c1f3f4acfd94084f2ce646c23d0a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3698444807560922446, guid: 8ae1c1f3f4acfd94084f2ce646c23d0a, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5

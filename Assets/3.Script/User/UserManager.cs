@@ -18,20 +18,20 @@ public class UserManager : MonoBehaviour
 
     private void Start()
     {
-        // 초기 경험치 및 공격력 설정
+
         UpdateStatus();
     }
 
     private void UpdateStatus()
     {
-        max_experience = level * 100;  // 경험치 공식 수정
+        max_experience = level * 100; 
         attack = level + upgrade;
     }
 
     public void Upgrade()
     {
         upgrade++;
-        UpdateStatus(); // 공격력 재계산
+        UpdateStatus();
     }
 
     public void Getexperience(int stageExperience)
@@ -46,9 +46,9 @@ public class UserManager : MonoBehaviour
 
     private void LevelUp()
     {
-        cur_experience -= max_experience; // 초과된 경험치 보존
+        cur_experience -= max_experience; 
         level++;
-        UpdateStatus(); // 레벨업 후 공격력과 경험치 업데이트
+        UpdateStatus(); 
     }
 
     

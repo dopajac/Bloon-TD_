@@ -66,10 +66,9 @@ public class MonsterManager : MonoBehaviour
 
         animator.SetBool("isDead", true);
 
-        // `alivemonster` 및 `spawnedMonsterList`에서 제거
+
         RemoveFromMonsterList();
-        
-        // 애니메이션 후 ReturnToPool 실행
+
         Invoke(nameof(ReturnToPool), 1.0f);
 
         Invoke(nameof(CheckStageClear), 0.1f);
@@ -101,17 +100,16 @@ public class MonsterManager : MonoBehaviour
         if (monsterSpawner == null || monsterSpawner.finishobj == null) return;
 
         if (collision.gameObject == monsterSpawner.finishobj)        {
-            // 몬스터가 도착했음을 `alivemonster`에 추가
+
             if (!monsterSpawner.alivemonster.Contains(gameObject))
             {
                 monsterSpawner.alivemonster.Add(gameObject);
             }
 
-            // GameManager의 life 감소
             GameManager.instance.life--;
             Debug.Log($"몬스터가 finishobj에 도달! 남은 생명: {GameManager.instance.life}");
 
-            // `spawnedMonsterList`에서 제거하지만, `alivemonster`에는 남겨둠
+
             transform.position = new Vector3(-20, -20, 0);
             gameObject.SetActive(false);
 

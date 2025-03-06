@@ -24,20 +24,16 @@ public class UserInformation : MonoBehaviour
         {
             Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            // 클릭한 위치를 타일 격자에 맞춤
             Vector2 snappedPosition = new Vector2(
                 Mathf.Round(mousePosition.x / gridSize) * gridSize,
                 Mathf.Round(mousePosition.y / gridSize) * gridSize
             );
 
-            // 디버깅: 클릭한 위치 출력
-
-            // 해당 위치에 "User" 태그가 있는 오브젝트가 있는지 확인
             Collider2D[] colliders = Physics2D.OverlapCircleAll(snappedPosition, 0.1f);
 
             foreach (Collider2D collider in colliders)
             {
-                if (collider.CompareTag("User")) // "User" 태그가 있는 오브젝트가 감지되면
+                if (collider.CompareTag("User")) 
                 {
                     Check_User = collider.gameObject;
                     CanvasObject.instance.Information_Panel.SetActive(true);
@@ -69,7 +65,7 @@ public class UserInformation : MonoBehaviour
         }
         else
         {
-            CanvasObject.instance.sliderEXP.value = 0; // 방어 코드 (0으로 나누는 오류 방지)
+            CanvasObject.instance.sliderEXP.value = 0; 
         }
 
     }
@@ -80,7 +76,7 @@ public class UserInformation : MonoBehaviour
             0 => 10,
             1 => 20,
             2 => 30,
-            _ => int.MaxValue // 기본적으로 불가능하도록 설정
+            _ => int.MaxValue 
         };
 
         return Check_User_inform.level >= requiredLevel;

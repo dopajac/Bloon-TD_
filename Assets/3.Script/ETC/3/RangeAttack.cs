@@ -17,33 +17,50 @@ public class RangeAttack : MonoBehaviour
     public float effectDuration = 1f;
     public CircleCollider2D circlecollider;
     public List<GameObject> monstersInRange = new List<GameObject>();
+    public GameObject targetMonster; //  현재 타겟
 
     public UserManager userManager;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         circlecollider = GetComponent<CircleCollider2D>();
         attackRadius = circlecollider.radius;
-
+        
         if (transform.parent != null)
         {
             animatorattackmotion = transform.parent.GetComponent<Animator>();
+            spriteRenderer = transform.parent.GetComponent<SpriteRenderer>(); // SpriteRenderer 가져오기
         }
         else
         {
-            Debug.LogError("Suncold5Attack: 부모 오브젝트가 없습니다!");
+            Debug.LogError("RangeAttack: 부모 오브젝트가 없습니다!");
         }
+        animatorusereffect = UserEffectPrefab.transform.GetComponent<Animator>();
+        animatorattack = attackEffectPrefab.transform.GetComponent<Animator>();
 
+        animatorhit = hitEffectPrefab.transform.GetComponent<Animator>(); 
         userManager = transform.parent.GetComponent<UserManager>();
-
-        animatorhit = hitEffectPrefab.GetComponent<Animator>();
-        animatorattack = attackEffectPrefab.GetComponent<Animator>();
-        animatorusereffect = UserEffectPrefab.GetComponent<Animator>();
 
         attackRadius = circlecollider.bounds.extents.x;
 
         // 몬스터 사망 이벤트 구독
         MonsterManager.OnMonsterDeath += HandleMonsterDeath;
+    }
+
+    void Update()
+    {
+        if (targetMonster == null) return;
+
+        // 타겟이 유저의 오른쪽에 있으면 Flip
+        if (targetMonster.transform.position.x > transform.parent.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 
     private void OnDestroy()
@@ -58,21 +75,17 @@ public class RangeAttack : MonoBehaviour
             if (!monstersInRange.Contains(collision.gameObject))
             {
                 monstersInRange.Add(collision.gameObject);
+                UpdateTarget(); // 새로운 타겟 설정
             }
 
             Debug.Log("몬스터 감지됨: " + collision.gameObject.name);
 
             UserEffectPrefab.SetActive(true);
             animatorusereffect.SetBool("isinRange", true);
-
-            if (animatorattackmotion != null)
-            {
-                animatorattackmotion.SetBool("isinRange", true);
-            }
+            animatorattackmotion.SetBool("isinRange", true);
 
             if (monstersInRange.Count == 1)
             {
-                // 몬스터가 처음 감지될 때 공격 시작
                 attackSpeed = userManager != null ? userManager.attackspeed : 1f;
                 InvokeRepeating(nameof(AttackAllMonsters), 0, attackSpeed);
             }
@@ -84,13 +97,13 @@ public class RangeAttack : MonoBehaviour
         if (collision.gameObject.CompareTag("Monster"))
         {
             RemoveMonsterFromList(collision.gameObject);
+            UpdateTarget(); // 타겟 재설정
 
             if (monstersInRange.Count == 0)
             {
                 animatorusereffect.SetBool("isinRange", false);
                 animatorattackmotion.SetBool("isinRange", false);
-
-                CancelInvoke(nameof(AttackAllMonsters)); // 모든 몬스터가 나가면 공격 중지
+                CancelInvoke(nameof(AttackAllMonsters));
             }
         }
     }
@@ -152,13 +165,25 @@ public class RangeAttack : MonoBehaviour
     private void HandleMonsterDeath(GameObject monster)
     {
         RemoveMonsterFromList(monster);
+        UpdateTarget(); //  타겟 재설정
 
         if (monstersInRange.Count == 0)
         {
             animatorusereffect.SetBool("isinRange", false);
             animatorattackmotion.SetBool("isinRange", false);
+            CancelInvoke(nameof(AttackAllMonsters));
+        }
+    }
 
-            CancelInvoke(nameof(AttackAllMonsters)); // 모든 몬스터가 죽으면 공격 중지
+    private void UpdateTarget()
+    {
+        if (monstersInRange.Count > 0)
+        {
+            targetMonster = monstersInRange[0]; // 가장 먼저 들어온 몬스터를 타겟으로 설정
+        }
+        else
+        {
+            targetMonster = null;
         }
     }
 

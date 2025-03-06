@@ -5,11 +5,11 @@ using UnityEngine;
 public class AttackMonster : MonoBehaviour
 {
     private Animator animator;
-    [SerializeField] public Queue<GameObject> monstersInRange = new Queue<GameObject>(); // FIFO 구조
+    [SerializeField] public Queue<GameObject> monstersInRange = new Queue<GameObject>(); 
     public UserManager userManager;
     private SpriteRenderer spriteRenderer;
     public GameObject target;
-    public BulletController bulletController; // 미리 존재하는 Bullet 사용
+    public BulletController bulletController; 
 
     private void Awake()
     {
@@ -25,13 +25,24 @@ public class AttackMonster : MonoBehaviour
             Debug.LogError("UserManager를 부모에서 찾을 수 없습니다.");
         }
 
-        // 몬스터 사망 이벤트 구독
         MonsterManager.OnMonsterDeath += HandleMonsterDeath;
     }
+    private void Update()
+    {
+        if (target == null) return;
 
+
+        if (target.transform.position.x > transform.parent.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
+    }
     private void OnDestroy()
     {
-        // 이벤트 해제 (메모리 누수 방지)
         MonsterManager.OnMonsterDeath -= HandleMonsterDeath;
     }
 
@@ -45,7 +56,7 @@ public class AttackMonster : MonoBehaviour
             }
 
             animator.SetBool("isinRange", true);
-            InvokeRepeating(nameof(Attack), 0, userManager.attackspeed); // 공격 실행
+            InvokeRepeating(nameof(Attack), 0, userManager.attackspeed);
         }
     }
 
@@ -58,7 +69,7 @@ public class AttackMonster : MonoBehaviour
             if (monstersInRange.Count == 0)
             {
                 animator.SetBool("isinRange", false);
-                CancelInvoke(nameof(Attack)); // 몬스터가 없으면 공격 중지
+                CancelInvoke(nameof(Attack)); 
             }
         }
     }
@@ -101,7 +112,7 @@ public class AttackMonster : MonoBehaviour
             {
                 return nextTarget;
             }
-            monstersInRange.Dequeue(); //  죽은 몬스터는 완전히 제거
+            monstersInRange.Dequeue(); 
         }
         return null;
     }
@@ -120,8 +131,6 @@ public class AttackMonster : MonoBehaviour
 
         monstersInRange = newQueue;
     }
-
-    // 몬스터가 사망했을 때 자동으로 제거
     private void HandleMonsterDeath(GameObject monster)
     {
         RemoveMonsterFromQueue(monster);

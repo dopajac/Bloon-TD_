@@ -52,7 +52,7 @@ public class MonsterSpawner : MonoBehaviour
 
         while (isSpawning)
         {
-            if (cur_mostercount < monstercount) // 10마리까지만 소환
+            if (cur_mostercount < monstercount) 
             {
                 SpawnMonster(currentLevel);
                 cur_mostercount++;
@@ -74,11 +74,11 @@ public class MonsterSpawner : MonoBehaviour
         {
             GameObject monster = Instantiate(prefab, new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Quaternion.identity);
 
-            // 생성된 몬스터를 "MonsterList" 부모 오브젝트 아래에 배치
+           
             monster.transform.SetParent(monsterParent, false);
 
             monster.SetActive(true);
-            spawnedMonsterList.Add(monster); // 리스트에 추가
+            spawnedMonsterList.Add(monster); 
             Debug.Log($"[MonsterSpawner] 몬스터 스폰됨: {monster.name}");
         }
     }

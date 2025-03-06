@@ -121,27 +121,26 @@ public class ButtonManager : MonoBehaviour
 
     public void OnbuttonChooseJob(int id)
     {
-        //기존 캐릭터의 정보 저장
+
         int oldLevel = userInformation.Check_User_inform.level;
         int oldAttackPower = userInformation.Check_User_inform.attack;
         float oldmax_Exp = userInformation.Check_User_inform.max_experience;
         float oldcur_Exp = userInformation.Check_User_inform.cur_experience;
         int oldupgrade = userInformation.Check_User_inform.upgrade;
 
-        // 현재 유저의 위치 저장
+
         Vector3 spawnPosition = userInformation.Check_User.transform.position;
 
-        // 새로운 유저 생성
+
         GameObject newUser = Instantiate(userdata.UserList[id], spawnPosition, Quaternion.identity);
 
-        // 기존 유저 삭제
+
         Destroy(userInformation.Check_User);
 
-        // 새로운 유저 적용
         userInformation.Check_User = newUser;
         userInformation.Check_User_inform = newUser.GetComponent<UserManager>();
 
-        //기존 캐릭터의 정보를 새로운 캐릭터에 적용
+
         userInformation.Check_User_inform.level = oldLevel;
         userInformation.Check_User_inform.attack = oldAttackPower;
         userInformation.Check_User_inform.max_experience = oldmax_Exp;
@@ -154,7 +153,6 @@ public class ButtonManager : MonoBehaviour
             child.gameObject.SetActive(false);
         }
 
-        // UI 업데이트
         userInformation.SetInfoPanel();
         userInformation.OpenJobUpgradeButton();
 

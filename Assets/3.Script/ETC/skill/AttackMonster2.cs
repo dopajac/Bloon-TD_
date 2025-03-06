@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AttackMonster2 : MonoBehaviour
 {
-    public GameObject target; // 가장 먼저 감지된 몬스터
-    private List<GameObject> monstersInRange = new List<GameObject>(); // 감지된 몬스터 리스트
+    public GameObject target; 
+    private List<GameObject> monstersInRange = new List<GameObject>(); 
     public GameObject skillPrefab;
     public Animator Useranimator;
     private void Start()
@@ -21,7 +21,7 @@ public class AttackMonster2 : MonoBehaviour
             monstersInRange.Add(collision.gameObject);
             if (target == null)
             {
-                target = collision.gameObject; // 가장 먼저 감지된 몬스터를 타겟으로 설정
+                target = collision.gameObject; 
                 Debug.Log($"타겟 설정: {target.name}");
             }
         }

@@ -17,8 +17,10 @@ public class RangeAttack2 : MonoBehaviour
     public float effectDuration = 1f;
     public CircleCollider2D circlecollider;
     public List<GameObject> monstersInRange = new List<GameObject>();
+    public GameObject targetMonster; 
 
     public UserManager userManager;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -28,21 +30,33 @@ public class RangeAttack2 : MonoBehaviour
         if (transform.parent != null)
         {
             animatorattackmotion = transform.parent.GetComponent<Animator>();
-        }
-        else
-        {
-            Debug.LogError("Suncold5Attack: 부모 오브젝트가 없습니다!");
+            spriteRenderer = transform.parent.GetComponent<SpriteRenderer>(); 
         }
 
+        animatorusereffect = animatorusereffect.transform.GetComponent<Animator>();
+        animatorhit = hitEffectPrefab.transform.GetComponent<Animator>();
+        
         userManager = transform.parent.GetComponent<UserManager>();
-
-        animatorhit = hitEffectPrefab.GetComponent<Animator>();
-        animatorusereffect = UserEffectPrefab.GetComponent<Animator>();
 
         attackRadius = circlecollider.bounds.extents.x;
 
         // 몬스터 사망 이벤트 구독
         MonsterManager.OnMonsterDeath += HandleMonsterDeath;
+    }
+
+    void Update()
+    {
+        if (targetMonster == null) return;
+
+        // 타겟이 유저의 오른쪽에 있으면 Flip
+        if (targetMonster.transform.position.x > transform.parent.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 
     private void OnDestroy()
@@ -57,12 +71,12 @@ public class RangeAttack2 : MonoBehaviour
             if (!monstersInRange.Contains(collision.gameObject))
             {
                 monstersInRange.Add(collision.gameObject);
+                UpdateTarget(); 
             }
 
             Debug.Log("몬스터 감지됨: " + collision.gameObject.name);
 
             UserEffectPrefab.SetActive(true);
-            animatorusereffect.SetBool("isinRange", true);
 
             if (animatorattackmotion != null)
             {
@@ -71,7 +85,6 @@ public class RangeAttack2 : MonoBehaviour
 
             if (monstersInRange.Count == 1)
             {
-                // 몬스터가 처음 감지될 때 공격 시작
                 attackSpeed = userManager != null ? userManager.attackspeed : 1f;
                 InvokeRepeating(nameof(AttackAllMonsters), 0, attackSpeed);
             }
@@ -83,13 +96,13 @@ public class RangeAttack2 : MonoBehaviour
         if (collision.gameObject.CompareTag("Monster"))
         {
             RemoveMonsterFromList(collision.gameObject);
+            UpdateTarget(); // 타겟 재설정
 
             if (monstersInRange.Count == 0)
             {
-                animatorusereffect.SetBool("isinRange", false);
                 animatorattackmotion.SetBool("isinRange", false);
                 UserEffectPrefab.SetActive(false);
-                CancelInvoke(nameof(AttackAllMonsters)); // 모든 몬스터가 나가면 공격 중지
+                CancelInvoke(nameof(AttackAllMonsters));
             }
         }
     }
@@ -99,7 +112,6 @@ public class RangeAttack2 : MonoBehaviour
         if (monstersInRange.Count == 0)
         {
             CancelInvoke(nameof(AttackAllMonsters));
-            
             return;
         }
 
@@ -145,13 +157,25 @@ public class RangeAttack2 : MonoBehaviour
     private void HandleMonsterDeath(GameObject monster)
     {
         RemoveMonsterFromList(monster);
+        UpdateTarget();
 
         if (monstersInRange.Count == 0)
         {
             animatorusereffect.SetBool("isinRange", false);
             animatorattackmotion.SetBool("isinRange", false);
+            CancelInvoke(nameof(AttackAllMonsters));
+        }
+    }
 
-            CancelInvoke(nameof(AttackAllMonsters)); // 모든 몬스터가 죽으면 공격 중지
+    private void UpdateTarget()
+    {
+        if (monstersInRange.Count > 0)
+        {
+            targetMonster = monstersInRange[0]; 
+        }
+        else
+        {
+            targetMonster = null;
         }
     }
 

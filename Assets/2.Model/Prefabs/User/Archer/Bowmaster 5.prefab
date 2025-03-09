@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 87689138710399594}
   - component: {fileID: 4587337016493804637}
   - component: {fileID: 599405122062497202}
-  - component: {fileID: 6650611206157557187}
+  - component: {fileID: 4717026380994981717}
   m_Layer: 9
   m_Name: Circle
   m_TagString: Untagged
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &6650611206157557187
+--- !u!114 &4717026380994981717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 510152397354460117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf45638d33fb244c9a8b46f256de1f6, type: 3}
+  m_Script: {fileID: 11500000, guid: b7e2a1aa1a50ba94f8d54c3003acfc2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
@@ -221,7 +221,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 0336469aeadcd7a49ba6a9ecfb2ec317, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -358,7 +358,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5372987269721766669, guid: 016e8c8f6d6208844ad7f2ee82faf80b, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7220441744455269328, guid: 016e8c8f6d6208844ad7f2ee82faf80b, type: 3}
       propertyPath: m_Name
@@ -444,8 +444,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 4025729888813766416}
     m_Modifications:
     - target: {fileID: 804585873686948934, guid: 9af2caa9d643206409ee8a53e6338853, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804585873686948934, guid: 9af2caa9d643206409ee8a53e6338853, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1945938250770440879, guid: 9af2caa9d643206409ee8a53e6338853, type: 3}
       propertyPath: m_Name
@@ -453,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1945938250770440879, guid: 9af2caa9d643206409ee8a53e6338853, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7598461471132939326, guid: 9af2caa9d643206409ee8a53e6338853, type: 3}
       propertyPath: m_LocalScale.x
@@ -528,7 +532,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2161585284882205212, guid: e859ca999a58ce6468b5555a847128eb, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2811113900797306604, guid: e859ca999a58ce6468b5555a847128eb, type: 3}
       propertyPath: m_LocalPosition.x

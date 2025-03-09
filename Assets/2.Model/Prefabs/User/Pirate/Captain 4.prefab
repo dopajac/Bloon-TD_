@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3558912582596075046}
   - component: {fileID: 3027838289377139310}
   - component: {fileID: 7244978905173481716}
-  - component: {fileID: 4527738918735702371}
   m_Layer: 9
   m_Name: Circle
   m_TagString: Untagged
@@ -121,26 +120,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &4527738918735702371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 832646830880589704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf45638d33fb244c9a8b46f256de1f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  skillPrefab: {fileID: 6048180376476906929}
-  bulletPrefab: {fileID: 0}
-  hitPrefab: {fileID: 3417497749798051796}
-  bulletSpawnPoint: {fileID: 0}
-  bulletSpeed: 10
-  userManager: {fileID: 0}
-  targetMonster: {fileID: 0}
 --- !u!1 &5315291990432115921
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +199,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 283ca975c9481184297c2490d9402e08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -359,9 +338,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: captain 4 skill
       objectReference: {fileID: 0}
+    - target: {fileID: 1479255439575754279, guid: 8470aba193550b1448b5bdcd208b74f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1502557418408640416, guid: 8470aba193550b1448b5bdcd208b74f6, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7119810585126297872, guid: 8470aba193550b1448b5bdcd208b74f6, type: 3}
       propertyPath: m_LocalScale.x
@@ -421,11 +404,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7119810585126297872, guid: 8470aba193550b1448b5bdcd208b74f6, type: 3}
   m_PrefabInstance: {fileID: 5145409844187943830}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6048180376476906929 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1479255439575754279, guid: 8470aba193550b1448b5bdcd208b74f6, type: 3}
-  m_PrefabInstance: {fileID: 5145409844187943830}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7457614681443830815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -440,7 +418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7815807750021288435, guid: bf096846cb7a21e4092f8dd49e5229af, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8121655603618213545, guid: bf096846cb7a21e4092f8dd49e5229af, type: 3}
       propertyPath: m_LocalScale.x
@@ -498,10 +476,5 @@ PrefabInstance:
 --- !u!4 &1714516549903835830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8121655603618213545, guid: bf096846cb7a21e4092f8dd49e5229af, type: 3}
-  m_PrefabInstance: {fileID: 7457614681443830815}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3417497749798051796 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5193671896693625803, guid: bf096846cb7a21e4092f8dd49e5229af, type: 3}
   m_PrefabInstance: {fileID: 7457614681443830815}
   m_PrefabAsset: {fileID: 0}

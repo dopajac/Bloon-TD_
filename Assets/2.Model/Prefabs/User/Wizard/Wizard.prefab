@@ -214,7 +214,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 3126d0a492005b1408407b71f6a3530f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -353,6 +353,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizard skill
       objectReference: {fileID: 0}
+    - target: {fileID: 2762165031432555326, guid: 6da08abddb9915549a122d99ed715186, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3058812480056071635, guid: 6da08abddb9915549a122d99ed715186, type: 3}
       propertyPath: m_Controller
       value: 
@@ -371,7 +375,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 62a5de4bfff3aad4ca4413629e3ac277, type: 3}
     - target: {fileID: 4056494361958203117, guid: 6da08abddb9915549a122d99ed715186, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4056494361958203117, guid: 6da08abddb9915549a122d99ed715186, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -379,11 +383,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7251212339240906277, guid: 6da08abddb9915549a122d99ed715186, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.948
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 7251212339240906277, guid: 6da08abddb9915549a122d99ed715186, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.177
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7251212339240906277, guid: 6da08abddb9915549a122d99ed715186, type: 3}
       propertyPath: m_LocalPosition.z

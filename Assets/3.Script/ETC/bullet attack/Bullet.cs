@@ -51,10 +51,10 @@ public class Bullet : MonoBehaviour
             if (hitPrefab != null)
             {
                 GameObject hitEffect = Instantiate(hitPrefab, targetMonster.transform.position, Quaternion.identity);
-                Destroy(hitEffect, attackSpeed); 
+                Destroy(hitEffect, attackSpeed);
             }
         }
-        
+
         gameObject.transform.position = transform.parent.position;
     }
 }

@@ -18,10 +18,10 @@ public class ButtonManager : MonoBehaviour
         objectdetector = objectdetec.GetComponent<ObjectDetector>();
         TryGetComponent(out userInformation);
         monsterSpawner = FindObjectOfType<MonsterSpawner>();
-        
+
     }
 
-    
+
 
     // 특정 UI 오브젝트 위를 클릭했는지 확인하는 함수
     private bool IsPointerOverUIObject(string uiObjectName)
@@ -48,12 +48,12 @@ public class ButtonManager : MonoBehaviour
     {
         StartCoroutine(RespawnMonstersWithInterval(monsterSpawner.spawnDelay));
     }
-    
+
     private IEnumerator RespawnMonstersWithInterval(float delay)
     {
         List<GameObject> respawnList = new List<GameObject>(monsterSpawner.alivemonster);
-        monsterSpawner. alivemonster.Clear(); // 기존 리스트 초기화
-    
+        monsterSpawner.alivemonster.Clear(); // 기존 리스트 초기화
+
         foreach (GameObject monster in respawnList)
         {
             if (monster != null)
@@ -90,7 +90,15 @@ public class ButtonManager : MonoBehaviour
     {
         CanvasObject.instance.Information_Panel.SetActive(false);
     }
-
+    public void OnButtonCloseJobUpGradePanel()
+    {
+        CanvasObject.instance.JobUpgrade_Panel.SetActive(false);
+        CanvasObject.instance.adventurerUpgrade_Panel.SetActive(false);
+        CanvasObject.instance.WarriorUpgrade_Panel.SetActive(false);
+        CanvasObject.instance.WizardUpgrade_Panel.SetActive(false);
+        CanvasObject.instance.PirateUpgrade_Panel.SetActive(false);
+        
+    }
     public void OnbuttonJobUpgrade()
     {
         
@@ -147,32 +155,33 @@ public class ButtonManager : MonoBehaviour
 
     public void OnbuttonChooseJob(int id)
     {
-
         int oldLevel = userInformation.Check_User_inform.level;
         int oldAttackPower = userInformation.Check_User_inform.attack;
         float oldmax_Exp = userInformation.Check_User_inform.max_experience;
         float oldcur_Exp = userInformation.Check_User_inform.cur_experience;
         int oldupgrade = userInformation.Check_User_inform.upgrade;
 
-
         Vector3 spawnPosition = userInformation.Check_User.transform.position;
 
-
-        GameObject newUser = Instantiate(userdata.UserList[id], spawnPosition, Quaternion.identity);
-
-
+        // 기존 오브젝트 삭제 전에 스프라이트를 미리 가져오기 (선택 사항)
         Destroy(userInformation.Check_User);
 
+        // 새로운 유저 오브젝트 생성
+        GameObject newUser = Instantiate(userdata.UserList[id], spawnPosition, Quaternion.identity);
         userInformation.Check_User = newUser;
         userInformation.Check_User_inform = newUser.GetComponent<UserManager>();
 
-        
+        // 유저 정보 유지
         userInformation.Check_User_inform.level = oldLevel;
         userInformation.Check_User_inform.attack = oldAttackPower;
         userInformation.Check_User_inform.max_experience = oldmax_Exp;
         userInformation.Check_User_inform.cur_experience = oldcur_Exp;
         userInformation.Check_User_inform.upgrade = oldupgrade;
 
+        // **스프라이트 업데이트 추가**
+        userInformation.User_sprite = newUser.GetComponent<SpriteRenderer>();
+
+        // UI 업데이트
         CanvasObject.instance.JobUpgrade_Panel.SetActive(false);
         foreach (Transform child in CanvasObject.instance.JobUpgrade_Panel.transform)
         {
@@ -181,9 +190,8 @@ public class ButtonManager : MonoBehaviour
 
         userInformation.SetInfoPanel();
         userInformation.OpenJobUpgradeButton();
-
-
     }
+
 
 
 

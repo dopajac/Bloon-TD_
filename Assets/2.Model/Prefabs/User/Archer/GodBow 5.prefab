@@ -221,7 +221,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 24e6d1ea2f4e0ed4c8f41205d1aba353, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -358,11 +358,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2687192790147415079, guid: 6b3d81ae2264c5e41b42bcf845af5809, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6841014342398772697, guid: 6b3d81ae2264c5e41b42bcf845af5809, type: 3}
       propertyPath: m_Name
       value: Godbow5 skill
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841014342398772697, guid: 6b3d81ae2264c5e41b42bcf845af5809, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7479065810031817930, guid: 6b3d81ae2264c5e41b42bcf845af5809, type: 3}
       propertyPath: m_LocalScale.x
@@ -489,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5190324713685986988, guid: 9e84ce775b05a9048b76c8f95ebdf74d, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -520,7 +524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4861075664264683306, guid: 5df7aba1e64a57d458e500efa79371a7, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6861121018027115322, guid: 5df7aba1e64a57d458e500efa79371a7, type: 3}
       propertyPath: m_LocalScale.x

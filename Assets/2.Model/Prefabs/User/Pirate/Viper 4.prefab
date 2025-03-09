@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
@@ -364,9 +364,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: viper 4 skill
       objectReference: {fileID: 0}
+    - target: {fileID: 5831095789576526, guid: ce220a9af5120494ebf5a9533886755e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3027551577036826625, guid: ce220a9af5120494ebf5a9533886755e, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6348660646045796057, guid: ce220a9af5120494ebf5a9533886755e, type: 3}
       propertyPath: m_LocalScale.x
@@ -489,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2749111189924074986, guid: e488fb47ddf091440ae37edd35e015d3, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8996731523487106308, guid: e488fb47ddf091440ae37edd35e015d3, type: 3}
       propertyPath: m_Name

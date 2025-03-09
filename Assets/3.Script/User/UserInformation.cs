@@ -13,7 +13,7 @@ public class UserInformation : MonoBehaviour
 
     [SerializeField]
     public GameObject Check_User;
-    SpriteRenderer User_sprite;
+    public SpriteRenderer User_sprite { get; set; }
     private void Awake()
     {
         mainCamera = Camera.main;

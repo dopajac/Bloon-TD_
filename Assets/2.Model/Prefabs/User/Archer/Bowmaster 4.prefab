@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserJob: Bowmaster
-  JobLevel: 0
+  JobLevel: 2
   attack: 0
   cost: 100
   id: 16

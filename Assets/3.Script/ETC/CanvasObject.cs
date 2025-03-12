@@ -38,6 +38,10 @@ public class CanvasObject : MonoBehaviour
     [SerializeField]
     public GameObject PirateUpgrade_Panel;
     [SerializeField]
+    public GameObject GameClear_Panel;
+    [SerializeField]
+    public GameObject GameOver_Panel;
+    [SerializeField]
     public Text User_meso;
     [SerializeField]
     public Text User_life;

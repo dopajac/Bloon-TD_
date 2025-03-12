@@ -7,7 +7,7 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] public List<GameObject> MonsterPrefabs;
 
     [SerializeField] public float spawnDelay = 1.0f; // 1초마다 스폰
-    [SerializeField] private int currentLevel;
+    [SerializeField] public int currentLevel;
     [SerializeField] private int monstercount;
     [SerializeField] public List<GameObject> spawnedMonsterList = new List<GameObject>(); // 소환된 몬스터 리스트
     [SerializeField] public List<GameObject> alivemonster = new List<GameObject>(); // 살아있는 몬스터 리스트
@@ -62,6 +62,7 @@ public class MonsterSpawner : MonoBehaviour
                 Debug.Log("최대 몬스터 개수(10)에 도달하여 스폰 중지");
                 StopSpawning();
                 currentLevel++;
+                cur_mostercount = 0;
             }
 
             yield return new WaitForSeconds(spawnDelay);

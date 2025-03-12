@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: e6666570bb8fd864aa1c1e6bb4919319, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserJob: Pirate
-  JobLevel: 0
+  JobLevel: 1
   attack: 0
   cost: 100
   id: 25
@@ -414,7 +414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7720255975371381468, guid: 4754aed4618b65548a8a1271b19b779c, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -441,7 +441,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3676739658780410051, guid: 532f22fa249ee8e4999283c2a48b3455, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6883034796236407605, guid: 532f22fa249ee8e4999283c2a48b3455, type: 3}
       propertyPath: m_Name
@@ -453,11 +453,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9016159517652188278, guid: 532f22fa249ee8e4999283c2a48b3455, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9016159517652188278, guid: 532f22fa249ee8e4999283c2a48b3455, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9016159517652188278, guid: 532f22fa249ee8e4999283c2a48b3455, type: 3}
       propertyPath: m_LocalPosition.x

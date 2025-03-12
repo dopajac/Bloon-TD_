@@ -226,7 +226,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 6a7d3e1d4dc7be041980c7eba514a489, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserJob: Bishop
-  JobLevel: 0
+  JobLevel: 2
   attack: 0
   cost: 100
   id: 13
@@ -382,7 +382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2888323147506481791, guid: ff24fe833efc82f47a912d2ed3c78c7f, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7077750493413027720, guid: ff24fe833efc82f47a912d2ed3c78c7f, type: 3}
       propertyPath: m_LocalScale.x
@@ -457,7 +457,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1836523404679100206, guid: 1d36fd00b956f0f4c9fd8889a9bb4028, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7479203420786708169, guid: 1d36fd00b956f0f4c9fd8889a9bb4028, type: 3}
       propertyPath: m_Name

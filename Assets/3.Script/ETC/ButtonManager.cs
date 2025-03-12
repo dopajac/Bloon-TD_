@@ -105,7 +105,7 @@ public class ButtonManager : MonoBehaviour
         CanvasObject.instance.JobUpgrade_Panel.SetActive(true);
         usermanager = userInformation.Check_User.GetComponent<UserManager>();
         
-        if (usermanager.JobLevel == 0)
+        if (usermanager.JobLevel == 0 || usermanager.JobLevel == 1)
         {
             if (userInformation.Check_User.layer == LayerMask.NameToLayer("Adventurer"))
             {
@@ -118,7 +118,6 @@ public class ButtonManager : MonoBehaviour
             if (userInformation.Check_User.layer == LayerMask.NameToLayer("Wizard"))
             {
                 CanvasObject.instance.WizardUpgrade_Panel.SetActive(true);
-                Debug.Log("panel open");
             }
              if (userInformation.Check_User.layer == LayerMask.NameToLayer("Archer"))
             {
@@ -135,7 +134,7 @@ public class ButtonManager : MonoBehaviour
             
             
         }
-        else if (usermanager.JobLevel == 1)
+        else if (usermanager.JobLevel == 2)
         {
             // 제외해야 하는 id 리스트
             HashSet<int> excludedIds = new HashSet<int> { 1, 8, 15, 19, 20, 21, 22, 23, 24, 25 };
@@ -156,6 +155,7 @@ public class ButtonManager : MonoBehaviour
     public void OnbuttonChooseJob(int id)
     {
         int oldLevel = userInformation.Check_User_inform.level;
+        int joboldLevel = userInformation.Check_User_inform.JobLevel;
         int oldAttackPower = userInformation.Check_User_inform.attack;
         float oldmax_Exp = userInformation.Check_User_inform.max_experience;
         float oldcur_Exp = userInformation.Check_User_inform.cur_experience;

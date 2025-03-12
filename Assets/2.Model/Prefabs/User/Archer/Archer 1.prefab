@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserJob: 
-  JobLevel: 0
+  JobLevel: 1
   attack: 0
   cost: 0
   id: 15

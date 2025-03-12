@@ -37,6 +37,11 @@ public class AttackMonster2 : MonoBehaviour
                 target = monstersInRange.Count > 0 ? monstersInRange[0] : null;
                 Debug.Log($"타겟 변경: {target?.name ?? "없음"}");
             }
+            if (monstersInRange.Count == 0)
+            {
+                Useranimator.SetBool("isinRange", false);
+                skillPrefab.SetActive(false);
+            }
         }
     }
 }

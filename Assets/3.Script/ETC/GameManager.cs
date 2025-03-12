@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        meso = 100;
+        meso = 500;
         life = 100;
     }
 

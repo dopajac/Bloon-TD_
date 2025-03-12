@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7228893640753910216}
   - component: {fileID: 940173168297426533}
   - component: {fileID: 461028301394164723}
-  - component: {fileID: 5887022254487505972}
   - component: {fileID: 2231198881566203905}
   - component: {fileID: 5916259497556796317}
   m_Layer: 8
@@ -80,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: f1874bef406cd78448917f7e2ab65f83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -140,21 +139,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5887022254487505972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5315291990432115921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b1e4243dbd0cab4bacb15c920cc254b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userManager: {fileID: 0}
-  target: {fileID: 0}
-  bulletController: {fileID: 0}
 --- !u!114 &2231198881566203905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserJob: dark knight
-  JobLevel: 0
+  JobLevel: 2
   attack: 0
   cost: 100
   id: 6
@@ -233,7 +217,6 @@ GameObject:
   - component: {fileID: 5830962711073860827}
   - component: {fileID: 2670926398435608099}
   - component: {fileID: 8249743877863140665}
-  - component: {fileID: 2453195053809300315}
   - component: {fileID: 4637450370778254320}
   m_Layer: 9
   m_Name: Circle
@@ -344,21 +327,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2453195053809300315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6835331850626434974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b1e4243dbd0cab4bacb15c920cc254b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userManager: {fileID: 0}
-  target: {fileID: 0}
-  bulletController: {fileID: 0}
 --- !u!114 &4637450370778254320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4621267610959939358, guid: 65f2b3a195812424e8dfff81f740a721, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -459,15 +427,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3654712061681543088, guid: 6bba4f8f0ab3c554ba658c6236552d2f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6759652603655507395, guid: 6bba4f8f0ab3c554ba658c6236552d2f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6759652603655507395, guid: 6bba4f8f0ab3c554ba658c6236552d2f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6759652603655507395, guid: 6bba4f8f0ab3c554ba658c6236552d2f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -511,7 +479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390371882512853972, guid: 6bba4f8f0ab3c554ba658c6236552d2f, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

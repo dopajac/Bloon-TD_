@@ -13,7 +13,7 @@ public class StartGame : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            SceneManager.LoadScene("InGameScene");
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }

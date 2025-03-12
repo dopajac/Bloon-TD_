@@ -86,7 +86,7 @@ SpriteRenderer:
   m_Size: {x: 0.54, y: 0.79}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &940173168297426533
@@ -184,6 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1e4243dbd0cab4bacb15c920cc254b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userManager: {fileID: 0}
+  target: {fileID: 0}
+  bulletController: {fileID: 0}
 --- !u!114 &2231198881566203905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserJob: Shadow
+  JobLevel: 2
   attack: 0
   cost: 100
   id: 23

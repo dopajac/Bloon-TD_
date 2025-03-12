@@ -108,6 +108,10 @@ public class MonsterManager : MonoBehaviour
 
             GameManager.instance.life--;
             Debug.Log($"몬스터가 finishobj에 도달! 남은 생명: {GameManager.instance.life}");
+            if (GameManager.instance.life == 0)
+            {
+                CanvasObject.instance.GameOver_Panel.SetActive(true);
+            }
 
 
             transform.position = new Vector3(-20, -20, 0);
@@ -124,11 +128,15 @@ public class MonsterManager : MonoBehaviour
         {
             GameManager.instance.isStagefinish = true;
             Debug.Log("stage is clear");
+
             
-            monsterSpawner.cur_mostercount = 0;
             GameManager.instance.AddExperienceToUsers();
             GameManager.instance.StageExperience = 0;
 
+            if (monsterSpawner.currentLevel == 4)
+            {
+                CanvasObject.instance.GameClear_Panel.SetActive(false);
+            }
         }
     }
 
